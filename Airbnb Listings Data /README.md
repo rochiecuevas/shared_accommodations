@@ -46,7 +46,7 @@ file_names = [file_name[0:8] for file_name in newlist] # get only the extraction
 Airbnb_df_dict = dict(zip(file_names,Airbnb_dflist))
 ```
 
-4. Because the dictionary has several sublevels, extracting the neighbourhoods, property types, and daily rates and putting them in separate lists required nested for-loops. This is made possible through a function called `extract`:
+4. Because the dictionary has several sublevels, extracting information requires nested for-loops that iterate through each sublevel. The user-function called `extract` allows us to create a list for each of the metrics of interest: neighbourhoods, property types, daily rates, and dates.
 
 ```python
 # Create a function that extracts a wanted variable from the dictionary
@@ -58,6 +58,56 @@ def extract(dict_name, str): # metric of interest is what is written as string
                 for i in v: # to extract the values of the metric from the series of metric (each item has an index)
                     x.append(i)
     return x
+
+# Using the extract function, create lists for neighbourhoods, property types, daily rates, and dates
+neighbourhoods = extract(Airbnb_df_dict, "neighbourhood_cleansed")
+property_types = extract(Airbnb_df_dict, "property_type")
+daily_rates = extract(Airbnb_df_dict, "price")
+dates = extract(Airbnb_df_dict, "last_scraped")
+```
+
+5. The dates are parsed to provide the year and the month.
+
+```python
+# convert dates to year-month format
+dates2 = []
+for i in dates:
+    dates2.append(i[0:7])
+```
+
+6. The data different lists can now be placed into a dataframe.
+
+```python
+# create a new dataframe containing the lists of dates, neighbourhoods, property types, and daily rates
+Airbnb_df = pd.DataFrame({"date": dates2,
+                          "neighbourhood": neighbourhoods,
+                          "property type": property_types,
+                          "daily rate": daily_rates})
+```
+
+7. To make the data comparable to housing prices (which are based on annual assessed values), the daily rates should be converted to yearly rates. But because daily rates are presented as strings (with "$" and ","), these need to be converted first to floats before yearly rates are calculated.
+
+```python
+# Convert the price to annual rate from daily rate
+daily_rate = Airbnb_df["daily rate"].str.replace("$","") # data is string
+daily_rate = daily_rate.str.replace(",","") # data is still string
+daily_rate = daily_rate.astype(float)
+Airbnb_df["annual rate"] = daily_rate * 365 # calculate the yearly rate
 ```
 
 ## Output
+
+The dataframe can be viewed.
+
+```python
+# view file 
+Airbnb_df.head()
+```
+
+
+date	neighbourhood	property type	daily rate	annual rate
+0	2016-10	Seacliff	House	$105.00	38325.0
+1	2016-10	Seacliff	House	$300.00	109500.0
+2	2016-10	Seacliff	Apartment	$175.00	63875.0
+3	2016-10	Seacliff	House	$90.00	32850.0
+4	2016-10	Seacliff	Condominium	$400.00	146000.0
