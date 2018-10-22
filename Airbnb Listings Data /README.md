@@ -104,10 +104,19 @@ The dataframe can be viewed.
 Airbnb_df.head()
 ```
 
+The dataframe looks as follows:
 
-date	neighbourhood	property type	daily rate	annual rate
-0	2016-10	Seacliff	House	$105.00	38325.0
-1	2016-10	Seacliff	House	$300.00	109500.0
-2	2016-10	Seacliff	Apartment	$175.00	63875.0
-3	2016-10	Seacliff	House	$90.00	32850.0
-4	2016-10	Seacliff	Condominium	$400.00	146000.0
+||date|neighbourhood|property type|daily rate|annual rate|
+|---|---|---|---|---|---|
+|0|2016-10|Seacliff|House|$105.00|38325.0|
+|1|2016-10|Seacliff|House|$300.00|109500.0|
+|2|2016-10|Seacliff|Apartment|$175.00|63875.0|
+|3|2016-10|Seacliff|House|$90.00|32850.0|
+|4|2016-10|Seacliff|Condominium|$400.00|146000.0|
+
+The dataframe is saved in the Data folder, ready for data analyses and visualisation.
+
+```python
+# save as csv in the Data folder
+Airbnb_df.to_csv("../Data/Airbnb_listings.csv", sep = ",", encoding = "utf-8")
+```
