@@ -36,16 +36,28 @@ Airbnb_dflist = [pd.read_csv(file) for file in newlist] # runs pd.read_csv() for
 
 ```python
 # parsing the names for the dataframes
-file_names = [file_name[0:8] for file_name in newlist] 
+file_names = [file_name[0:8] for file_name in newlist] # get only the extraction dates
 ```
 
-3. The two lists, `file_names` and `Airbnb_dflist` are zipped together into a dictionary. 
+3. The two lists, `file_names` and `Airbnb_dflist` are zipped together into a dictionary. __Note:__ Doing so results in a nested dictionary with several sublevels.
 
 ```python
 # put two lists into a dictionary (first list has names of files; second list has the contents of the csv files)
 Airbnb_df_dict = dict(zip(file_names,Airbnb_dflist))
 ```
 
-This dictionary
+4. Because the dictionary has several sublevels, extracting the neighbourhoods, property types, and daily rates and putting them in separate lists required nested for-loops. This is made possible through a function called `extract`:
+
+```python
+# Create a function that extracts a wanted variable from the dictionary
+def extract(dict_name, str): # metric of interest is what is written as string
+    x = []
+    for key,value in dict_name.items():
+        for k,v in dict_name[key].items(): # key = extraction date, k = metric, v = series of values
+            if k == str: 
+                for i in v: # to extract the values of the metric from the series of metric (each item has an index)
+                    x.append(i)
+    return x
+```
 
 ## Output
