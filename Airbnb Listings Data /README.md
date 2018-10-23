@@ -19,7 +19,7 @@ import re # for filtering list of files
 ```
 
 ## Method
-In the `Airbnb Listings Data` folder, there are 28 csv files. To abide by the "Don't Repeat Yourself" (DRY) principle of software engineering, the files are not read as csv files one by one. Instead, the data from the different csv files are placed together as follows:
+In the `Airbnb Listings Data` folder, there are 28 csv files. To abide by the "Don't Repeat Yourself" (DRY) principle of software engineering, the files are not read as csv files one by one. Instead, the data from the different csv files are cleaned simultaneously as follows:
 1. Place all the csv files into a list
 
 ```python
