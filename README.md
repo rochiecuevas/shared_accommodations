@@ -6,14 +6,16 @@ Information about the housing options in San Francisco are available online. For
 
 Table 1. Sources of raw data for accommodation costs in San Francisco
 
-|Description|Website (click on the link to go to the site)|Dates covered|
-|---|---|---|
-|Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|Jul 2004–May 2018|
-|Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|
-|Housing prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessments-by-Year-and-Neighborhood-Code/qxzx-hau5)|2007–2016|
-|Peer-to-peer home rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|May 2015–Dec 2017|
+|Description|Website (click on the link to go to the site)|Dates covered|Raw data folder|
+|---|---|---|---|
+|Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|Jul 2004–May 2018|[Hotel Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data)|
+|Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|[Rent Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20Data)|
+|Housing prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessments-by-Year-and-Neighborhood-Code/qxzx-hau5)|2007–2016|[Home Prices](https://github.com/rochiecuevas/shared_accommodations/tree/master/Home%20Prices)|
+|Peer-to-peer home rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|May 2015–Dec 2017|[Airbnb Listings Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20)|
 
 ### Data cleaning
+The raw data are cleaned using Jupyter notebooks found inside each raw data folder. The cleaned data is then written as a csv file and saved in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
+
 #### Hotel data
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/hotel_indicators.csv) contains average daily rates, occupancy rates, and revenue per available room.
 
