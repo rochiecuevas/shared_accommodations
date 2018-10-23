@@ -114,7 +114,7 @@ The first five rows in the `Airbnb_df` looks like this:
 |3|2016-10|Seacliff|House|$90.00|32850.0|
 |4|2016-10|Seacliff|Condominium|$400.00|146000.0|
 
-The dataframe is saved in the Data folder, ready for data analyses and visualisation.
+The dataframe is saved as the [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/Airbnb_listings.csv) file in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder, ready for data analyses and visualisation.
 
 ```python
 # save as csv in the Data folder
