@@ -1,4 +1,4 @@
-# Effects of peer-to-peer home rental to the housing market in San Francisco
+# Effects of peer-to-peer short-term rental to the housing market in San Francisco
 ## Introduction
 ## Method
 ### Data sources
