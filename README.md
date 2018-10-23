@@ -6,14 +6,23 @@ Information about the housing options in San Francisco are available online. For
 
 Table 1. Sources of raw data for accommodation costs in San Francisco
 
-|Description|Website (click on the link to go to the site)|
+|Description|Website (click on the link to go to the site)|Dates covered|
 |---|---|
-|Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|
-|Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|
-|Housing prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessments-by-Year-and-Neighborhood-Code/qxzx-hau5)|
-|Peer-to-peer home rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|
+|Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|Jul 2004–May 2018|
+|Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|
+|Housing prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessments-by-Year-and-Neighborhood-Code/qxzx-hau5)|2007–2016|
+|Peer-to-peer home rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|May 2015–Dec 2017|
 
 ### Data cleaning
+#### Hotel data
+The dataset contains average daily rates, occupancy rates, and revenue per available room.
+
+#### Peer-to-peer home rental data
+
+
+#### Long-term rental data
+#### Housing prices data
+
 ### Data analyses
 ### Data visualisation
 ## Results
