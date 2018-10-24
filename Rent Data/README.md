@@ -98,15 +98,61 @@ The keys and values lists are then zipped into a dictionary and made into a data
 year_rent_df = pd.DataFrame(dict(zip(keys, values)))
 ```
 
-## Output
+`Avg Price Per Year` column was created and calculated among years 2011-2017 and added into DataFrame. Column  `City` was added  to specify the locations of Neighborhoods. 
+
+```python
+#Calculating Avg Rent Price Per Year 
+#and adding column 'City' to specify the location of neighborhood
+
+year_rent_df["Avg Price Per Year"] = ""
+year_rent_df["City"] = ""
+for row in year_rent_df["Neighborhood"]:
+year_rent_df["Avg Price Per Year"]=year_rent_df.mean(axis=1)
+year_rent_df["City"] = "San Francisco"
+year_rent_df.head()
+```
+
+New dependencies were imported.
+```python
+#Importing dependencies to make a request for Lat and Lng
+import requests
+import json
+```
+Geocoding was used  to obtain Coordinates(Lat & Lng) for each Neighborhood. 
+API key is not provided in this repo due to safety purposes. 
+
+```python
+# create a params 
+params = {"key": "API KEY"}
+
+# Loop through the year_rent_df and run a lat/long search for each neighborhood
+for index, row in year_rent_df.iterrows():
+base_url = "https://maps.googleapis.com/maps/api/geocode/json"
+
+neighborhood = row["Neighborhood"]
+city = row["City"]
+
+# update address key value
+params['address'] = f"{neighborhood},{city}"
+
+# make request
+lat_lng = requests.get(base_url, params=params)
+
+# convert to json
+lat_lng = lat_lng.json()
+#inserting coordinates to assigned columns
+year_rent_df.loc[index, "Lat"] = lat_lng["results"][0]["geometry"]["location"]["lat"]
+year_rent_df.loc[index, "Lng"] = lat_lng["results"][0]["geometry"]["location"]["lng"]
+```
+
+## Output 
 The first five lines of the dataframe `year_rent_df` looks like this:
 
-||Neighborhood|2011|2012|2013|2014|2015|2016|2017|
-|---|---|---|---|---|---|---|---|---|
-|0|Bayview|30723|28821|30433|35338|42870|45681|45747|
-|1|Bernal Heights|34471|35739|38924|43654|53977|54833|53741|
-|2|Buena Vista|42407|45678|49364|53889|61646|65690|61917|
-|3|Corona Heights|41051|44269|48263|52768|61781|64072|59849|
-|4|Cow Hollow|52856|52816|56455|62256|75947|78557|71952|
+||Neighborhood|2011|2012|2013|2014|2015|2016|2017|Avg Price Per Year|City|Lat|Lng| |---|---|---|---|---|---|---|---|---|---|---|---|---|
+|0|Bayview|30723|28821|30433|35338|42870|45681|45747|37087.571429|San Francisco|37.7304|-122.384|
+|1|Bernal Heights|34471|35739|38924|43654|53977|54833|53741|45048.428571|San Francisco|37.7389|-122.415|
+|2|Buena Vista|42407|45678|49364|53889|61646|65690|61917|54370.142857|San Francisco|37.8065|-122.421|
+|3|Corona Heights|41051|44269|48263|52768|61781|64072|59849|53150.428571|San Francisco|37.7618|-122.443|
+|4|Cow Hollow|52856|52816|56455|62256|75947|78557|71952|64405.571429|San Francisco|37.798|-122.44|
 
 This dataframe can now be saved as `yearly_rent.csv` in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
