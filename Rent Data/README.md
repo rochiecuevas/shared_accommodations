@@ -5,8 +5,8 @@ The dataset was downloaded from the real estate database company [Zillow](https:
 ## Getting Started
 
 Two Python (version 3.6) modules were used to prepare the data for further analyses and visualisation:
-- Pandas
-- Numpy
+- [Pandas](https://pandas.pydata.org/): to create data structures that could be processed and manipulated in Python
+- [NumPy](http://www.numpy.org/): to create an array
 
 ```python
 # Dependencies
