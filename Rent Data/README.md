@@ -68,28 +68,38 @@ year_list_str
 To get calculate the yearly rent rates, the function `totals` is iterated through the list of years, generating an array.
 
 ```python
-yearly_rate = [] # leads to a list of series
-
-for year in year_list_str:
-    yearly_rate.append(totals(rent_df,year))
+# Create an array of yearly rates per neighbourhood using the totals function
+yearly_rate = [totals(rent_df,year) for year in year_list_str] 
 ```
 
-The yearly rates and the neighbourhoods are then organised into the `year_rent` dataframe.
+The dataframe to be generated needs to have "Neighborhood" and the years (2011–2017) as the keys and the yearly rates as the values. To create a list of keys, the prefix "20" was added to each item in the `year_list_str` list. Then, "Neighborhood" was added at the 0th position in the list of keys.
 
 ```python
-# Create a dictionary
-year_rent = pd.DataFrame(dict({"Neighborhood": neighborhood,
-                               "2011": yearly_rate[0],
-                               "2012": yearly_rate[1],
-                               "2013": yearly_rate[2],
-                               "2014": yearly_rate[3],
-                               "2015": yearly_rate[4],
-                               "2016": yearly_rate[5],
-                               "2017": yearly_rate[6]}))
+# Create a list of keys by adding "20" to the last two digits of the year
+keys = year_list_str
+keys = ["20" + key for key in keys]
+
+# Insert Neighbourhood as a key
+keys.insert(0,"Neighborhood")
+```
+
+To create a list of values, the list of neighbourhoods is added to the array of yearly rates.
+
+```python
+# Create a list of values by adding the neighbourhood series to the yearly_rate array
+values = yearly_rate
+values.insert(0,neighborhood)
+```
+
+The keys and values lists are then zipped into a dictionary and made into a dataframe called `year_rent_df`.
+
+```python
+# Create a dataframe containing the yearly rates from 2011 to 2017 for the 62 neighbourhoods in SF 
+year_rent_df = pd.DataFrame(dict(zip(keys, values)))
 ```
 
 ## Output
-The first five lines of the dataframe `year_rent` looks like this:
+The first five lines of the dataframe `year_rent_df` looks like this:
 
 ||Neighborhood|2011|2012|2013|2014|2015|2016|2017|
 |---|---|---|---|---|---|---|---|---|
