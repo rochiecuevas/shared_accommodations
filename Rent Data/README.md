@@ -1,10 +1,10 @@
 ## Data Collection
 
-The dataset was downloaded from the Real estate database company Zillow website (https://www.zillow.com/san-francisco-ca/home-values/). It was published as a graph, with the availability to Download raw data. The dataset was obtained through the download function and was named as `raw_raw.xlsx`. This dataset contains the Names of San Francisco Neighborhoods, Region Type, Property Type and Montly Rent Rates (Nov 2010 -  Sep 2018).
+The dataset was downloaded from the real estate database company [Zillow](https://www.zillow.com/san-francisco-ca/home-values/). It was published as a graph, with the availability to download raw data. The dataset was obtained through the download function and was named as `raw_raw.xlsx`. This dataset contains the Names of San Francisco Neighborhoods, Region Type, Property Type and Monthly Rent Rates (Nov 2010-Sep 2018).
 
 ## Getting Started
 
-Several Python (version 3.6)  modules were used for preparing the data for further analyses and visualisation:
+Several Python (version 3.6) modules were used for preparing the data for further analyses and visualisation:
 - Pandas
 - Csv
 - Matplotlib.pyplot
@@ -27,28 +27,27 @@ import gmaps.datasets
 
 ## Data processing
 
-Dataset  `rent_raw.xlsx` was converted into CSV file `rent_raw.csv`
-The data from the `rent_raw.csv` file is loaded into a dataframe.
+Dataset `rent_raw.xlsx` was converted into CSV file `rent_raw.csv`. The data from the `rent_raw.csv` file is loaded into a dataframe.
 
 ```python
 #Create a dataframe from the csv file
 rent_df = pd.read_csv("rent_raw.csv")
 rent_df.head()
 ```
-Montly Rates were converted into Yearly Rates in added into a new DataFrame .
+`Monthly Rates` were converted into `Yearly Rates` and were added into a new DataFrame .
 
 ```python
 #Create new DataFrame 
 #Convert Monthly Rent Rates to Yearly Rent Rates
 rent_short_df = pd.DataFrame({"Region Name": rent_df["Region Name"],
-"Region Type": rent_df["Region Type"],
-"Data Type": rent_df["Data Type"]})
+                              "Region Type": rent_df["Region Type"],
+                              "Data Type": rent_df["Data Type"]})
 
 rent_short_df['2010'] = rent_df.apply(lambda row: row["Nov-10"] + row["Dec-10"], axis=1)
 rent_short_df['2011'] = rent_df.apply(lambda row: row["Jan-11"] + row["Feb-11"]+ row["Mar-11"]
-+ row["Apr-11"]+ row["May-11"]+ row["Jun-11"]+ row["Jul-11"]
-+ row["Aug-11"]+ row["Sep-11"]+ row["Oct-11"]+ row["Nov-11"]+
-row["Dec-11"], axis=1)
+                                      + row["Apr-11"]+ row["May-11"]+ row["Jun-11"]+ row["Jul-11"]
+                                      + row["Aug-11"]+ row["Sep-11"]+ row["Oct-11"]+ row["Nov-11"] +
+                                      row["Dec-11"], axis=1)
 rent_short_df.head()
 ```
 
