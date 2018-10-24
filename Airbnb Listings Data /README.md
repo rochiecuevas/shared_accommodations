@@ -46,7 +46,7 @@ file_names = [file_name[0:8] for file_name in newlist] # get only the extraction
 Airbnb_df_dict = dict(zip(file_names,Airbnb_dflist))
 ```
 
-4. Because the dictionary has several sublevels, extracting information requires nested for-loops that iterate through each sublevel. The user-defined function called `extract` uses these nested for-loops to allow us to create a list for each of the metrics of interest: neighbourhoods, property types, daily rates, and dates.
+4. Because the dictionary has several sublevels, extracting information requires nested for-loops that iterate through each sublevel. The user-defined function called `extract` uses these nested for-loops to create a list for each of the metrics of interest: neighbourhoods, property types, daily rates, and dates.
 
 ```python
 # Create a function that extracts a wanted variable from the dictionary
@@ -58,34 +58,40 @@ def extract(dict_name, str): # metric of interest is what is written as string
                 for i in v: # to extract the values of the metric from the series of metric (each item has an index)
                     x.append(i)
     return x
-
-# Using the extract function, create lists for neighbourhoods, property types, daily rates, and dates
-neighbourhoods = extract(Airbnb_df_dict, "neighbourhood_cleansed")
-property_types = extract(Airbnb_df_dict, "property_type")
-daily_rates = extract(Airbnb_df_dict, "price")
-dates = extract(Airbnb_df_dict, "last_scraped")
 ```
 
-5. The dates are parsed to provide the year and the month.
+5. There are four metrics of interest; hence, using a for-loop to run the `extract` function through the list of metrics can be done to extract the information from the `Airbnb_df_dict` dictionary. __Note:__ Doing so leads to an array which can be called through indexing
 
 ```python
-# convert dates to year-month format
-dates2 = []
-for i in dates:
-    dates2.append(i[0:7])
+# Create a list of variables of interest
+metrics = ["last_scraped", "neighbourhood_cleansed", "property_type", "price"]
+
+# Use a for-loop to get the values for each of the items in the metrics list using the extract function
+impt_metrics = [extract(Airbnb_df_dict,metric) for metric in metrics]
 ```
 
-6. The different lists can now be placed into a dataframe.
+6. The `last_scraped` values are then parsed to provide the year and the month.
 
 ```python
-# create a new dataframe containing the lists of dates, neighbourhoods, property types, and daily rates
-Airbnb_df = pd.DataFrame({"date": dates2,
-                          "neighbourhood": neighbourhoods,
-                          "property type": property_types,
-                          "daily rate": daily_rates})
+# Convert dates to year-month format
+impt_metrics[0] = [date[0:7] for date in impt_metrics[0]] # last-scraped is the date; it's the 0th item in metrics
 ```
 
-7. To make the data comparable to housing prices (which are based on annual assessed values), the daily rates should be converted to yearly rates. But because daily rates are presented as strings (with "$" and ","), these need to be converted first to floats before yearly rates are calculated.
+7. The column names have to be revised for clarity. To do so, a list of keys is created. "last_scraped" is renamed "date"; "price" is renamed "daily rate".
+
+```python
+# Create a list of keys
+keys = ["date", "neighbourhood", "property type", "daily rate"]
+```
+
+7. The keys and the values (impt_metrics) can now be placed into a dataframe.
+
+```python
+# Create a new dataframe containing the lists of dates, neighbourhoods, property types, and daily rates
+Airbnb_df = pd.DataFrame(dict(zip(keys, impt_metrics)))
+```
+
+8. To make the data comparable to housing prices (which are based on annual assessed values), the daily rates should be converted to yearly rates. But because daily rates are presented as strings (with "$" and ","), these need to be converted first to floats before yearly rates are calculated.
 
 ```python
 # Convert the price to annual rate from daily rate
@@ -96,14 +102,6 @@ Airbnb_df["annual rate"] = daily_rate * 365 # calculate the yearly rate
 ```
 
 ## Output
-
-The dataframe can be viewed.
-
-```python
-# view file 
-Airbnb_df.head()
-```
-
 The first five rows in the `Airbnb_df` looks like this:
 
 ||date|neighbourhood|property type|daily rate|annual rate|
