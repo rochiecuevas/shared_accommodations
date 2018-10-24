@@ -6,7 +6,7 @@ Information about the housing options in San Francisco are available online. For
 
 Table 1. Sources of raw data for accommodation costs in San Francisco
 
-|Description|Website|Dates covered|Raw data folder|
+|Description|Website Source|Dates covered|Raw data folder|
 |---|---|---|---|
 |Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|Jul 2004–May 2018|[Hotel Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data)|
 |Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|[Rent Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20Data)|
@@ -23,6 +23,8 @@ The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) is organised into 28 csv files. The data was cleaned and the relevant metrics were merged into one csv file using the [`Airbnb_listings.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Listings%20Data%20/Airbnb_listings.ipynb) jupyter notebook. A detailed description can be found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Listings%20Data%20/README.md).
 
 #### Long-term rental data
+The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv) is composed of one csv file that contains monthly rental rates from November 2010 to September 2018. The [`Rent_Analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) jupyter notebook is used to clean the data as described [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/README.md). 
+
 #### Housing prices data
 
 ### Data analyses

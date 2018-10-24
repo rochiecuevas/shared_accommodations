@@ -1,133 +1,112 @@
 ## Data Collection
 
-The dataset was downloaded from the real estate database company [Zillow](https://www.zillow.com/san-francisco-ca/home-values/). It was published as a graph, with the availability to download raw data. The dataset was obtained through the download function and was named as `raw_raw.xlsx`. This dataset contains the Names of San Francisco Neighborhoods, Region Type, Property Type and Monthly Rent Rates (Nov 2010-Sep 2018).
+The dataset was downloaded from the real estate database company [Zillow](https://www.zillow.com/san-francisco-ca/home-values/). It was published as a graph, with the availability to download raw data. The dataset was obtained through the download function and was saved as the [`rent_raw.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv). This dataset contains the Names of San Francisco Neighborhoods, Region Type, Property Type and Monthly Rent Rates (Nov 2010-Sep 2018).
 
 ## Getting Started
 
-Several Python (version 3.6) modules were used for preparing the data for further analyses and visualisation:
-- Pandas
-- Csv
-- Matplotlib.pyplot
-- Seaborn
-- Requests
-- json
-- gmaps/gmaps.datasets
+Two Python (version 3.6) modules were used to prepare the data for further analyses and visualisation:
+- [Pandas](https://pandas.pydata.org/): to create data structures that could be processed and manipulated in Python
+- [NumPy](http://www.numpy.org/): to create an array
 
 ```python
 # Dependencies
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import csv
-import requests
-import json
-import gmaps
-import gmaps.datasets
+import numpy as np
 ```
 
-## Data processing
+## Data cleaning
 
-Dataset `rent_raw.xlsx` was converted into CSV file `rent_raw.csv`. The data from the `rent_raw.csv` file is loaded into a dataframe.
+The data from the `rent_raw.csv` file is loaded into a dataframe.
 
 ```python
 #Create a dataframe from the csv file
 rent_df = pd.read_csv("rent_raw.csv")
 rent_df.head()
 ```
-`Monthly Rates` were converted into `Yearly Rates` and were added into a new DataFrame .
+
+The columns named `Region Type` and `Data Type` are not relevant to the analyses and are dropped from the `rent_df` dataframe.
 
 ```python
-#Create new DataFrame 
-#Convert Monthly Rent Rates to Yearly Rent Rates
-rent_short_df = pd.DataFrame({"Region Name": rent_df["Region Name"],
-                              "Region Type": rent_df["Region Type"],
-                              "Data Type": rent_df["Data Type"]})
-
-rent_short_df['2010'] = rent_df.apply(lambda row: row["Nov-10"] + row["Dec-10"], axis=1)
-rent_short_df['2011'] = rent_df.apply(lambda row: row["Jan-11"] + row["Feb-11"]+ row["Mar-11"]
-                                      + row["Apr-11"]+ row["May-11"]+ row["Jun-11"]+ row["Jul-11"]
-                                      + row["Aug-11"]+ row["Sep-11"]+ row["Oct-11"]+ row["Nov-11"] +
-                                      row["Dec-11"], axis=1)
-rent_short_df.head()
+rent_df = rent_df.drop(["Region Type", "Data Type"], axis = 1)
 ```
 
-Columns `2010 ` and `2018`  do not include 12 month period and were removed; only the relevant colums were retained in the  dataframe, `rent`. 
+To stay consistent with the other csv files in the repository, the `Region Name` is renamed as `Neighborhood`.
 
 ```python
-rent = rent_short_df.drop(['2010','2018'], axis=1)
+# Rename the columns
+rent_df = rent_df.rename(columns = {"Region Name": "Neighborhood"})
 ```
-Average Rent Rate was calculated among years 2011-2017 and added into column `Avg Rent Rate`. Column  `City` was added  to specify the locations of Neighborhoods. 
+
+The neighbourhoods are extracted from the dataframe as series.
 
 ```python
-rent["Avg Rent Rate"] = ""
-rent["City"] = ""
-for row in rent["Region Name"]:
-rent["Avg Rent Rate"]=rent.mean(axis=1)
-rent["City"] = "San Francisco"
-rent.head()
+# Get a series of neighbourhoods
+neighborhood = rent_df["Neighborhood"]
 ```
 
-Coordinates(Lat & Lng) for each Neighborhood were obtained through Geocoding.
-```python
-# Extracting Lat and Lng for each Neighborhood
-rent["Lat"] = ""
-rent["Lng"] = ""
-# create a params dict
-params = {"key": "AIzaSyAeEnQ_KhM7iD3A92bkFRr9lHJVg1Z6CeQ"}
-
-# Loop through the rent dataframe and run a lat/long search for each neighborhood
-for index, row in rent.iterrows():
-base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-
-neighborhood = row["Region Name"]
-city = row["City"]
-
-# update address key value
-params['address'] = f"{neighborhood},{city}"
-
-# make request
-lat_lng = requests.get(base_url, params=params)
-
-# convert to json
-lat_lng = lat_lng.json()
-
-rent.loc[index, "Lat"] = lat_lng["results"][0]["geometry"]["location"]["lat"]
-rent.loc[index, "Lng"] = lat_lng["results"][0]["geometry"]["location"]["lng"]
-```
-New DataFrame `rent` with all performed cleaning and data scopping was written as csv file `rent.csv`.
-
-## Data Visualization
-
-Data Visualization tools such as  - Matplotlib.pyplot , - Seaborn and -Gmaps.heatmap_layer were used to make a visual analysis.
-
-"Average Rent Rate (per Neigborhood)" graph was created to show Neighborhood with highest and lowest Rent Rates.
+To prevent repetitive code in performing the maths, a user-defined function is used. It calculates the totals per neighbourhood, per year. This function, called `totals`, filters through the columns to select the last two digits of the year and then conducts a row-wise calculation of sums to get the yearly rate per neighbourhood.
 
 ```python
-#Using Seaborn to create a graph that will show Average Rent Rate (per Neigborhood)
-plot = plt.subplots(figsize=(30, 10))
-sns.barplot(x = rent["Region Name"], y = rent["Avg Rent Rate"], palette="rocket")
-plt.xticks(rotation=90)
-plt.title("Average Rent Rate (per Neigborhood)", fontsize=30)
+# Create a function that returns the sum per row per year
+
+def totals(df,str): # where str is the last two digits of the year
+    year = df.filter(regex = str, axis = 1) # filter the columns based on the str
+    
+    return year.sum(axis = 1) # get the sum per row
 ```
 
-Data for average yearly change was used to creat a "Rent Price(by Year)" graph, which shows dynamic in Rent Price changes.
+The dataframe has monthly rates for seven complete years (i.e., 12 months per year). The last two digits of the years are put into a list and converted into a string. The floats are converted to string because the `totals` function recognises the year in string format. Two years, 2010 and 2018, have incomplete data; hence, the data from these years are dropped. 
 
 ```python
-#Importing csv file 
-year_df = pd.read_csv("Yearly_Avg.csv")
-#Creating a graph that will show yearly change in price 
-sns.lineplot(x = year_df["Year"], y = year_df["Year Avg ($)"], 
-marker ='D', linewidth=2, color = "purple")
-plt.title("Rent Price(by Year)", fontsize=15)
+# Create a list of years (with data for 12 months)
+year_list = list(np.arange(11,18)) # creates a list of floats covering the year range of rent_df
+year_list_str = [str(item) for item in year_list] # converts numbers to string
+    
+year_list_str
 ```
 
-Gmaps module was used to create a HeatMap. HeatMap was used to show the location of Neighborhoods correlated with their Average Rent Rate.
+To get calculate the yearly rent rates, the function `totals` is iterated through the list of years, generating an array.
 
 ```python
-#Creating a HeatMap to show Neighborhoods Rent Rates  
-locations = rent[["Lat", "Lng"]]
-weights = rent["Avg Rent Rate"]
-fig = gmaps.figure(map_type="SATELLITE")
-fig.add_layer(gmaps.heatmap_layer(locations, weights=weights, point_radius = 25))
-fig
+# Create an array of yearly rates per neighbourhood using the totals function
+yearly_rate = [totals(rent_df,year) for year in year_list_str] 
 ```
+
+The dataframe to be generated needs to have "Neighborhood" and the years (2011–2017) as the keys and the yearly rates as the values. To create a list of keys, the prefix "20" was added to each item in the `year_list_str` list. Then, "Neighborhood" was added at the 0th position in the list of keys.
+
+```python
+# Create a list of keys by adding "20" to the last two digits of the year
+keys = year_list_str
+keys = ["20" + key for key in keys]
+
+# Insert Neighbourhood as a key
+keys.insert(0,"Neighborhood")
+```
+
+To create a list of values, the list of neighbourhoods is added to the array of yearly rates.
+
+```python
+# Create a list of values by adding the neighbourhood series to the yearly_rate array
+values = yearly_rate
+values.insert(0,neighborhood)
+```
+
+The keys and values lists are then zipped into a dictionary and made into a dataframe called `year_rent_df`.
+
+```python
+# Create a dataframe containing the yearly rates from 2011 to 2017 for the 62 neighbourhoods in SF 
+year_rent_df = pd.DataFrame(dict(zip(keys, values)))
+```
+
+## Output
+The first five lines of the dataframe `year_rent_df` looks like this:
+
+||Neighborhood|2011|2012|2013|2014|2015|2016|2017|
+|---|---|---|---|---|---|---|---|---|
+|0|Bayview|30723|28821|30433|35338|42870|45681|45747|
+|1|Bernal Heights|34471|35739|38924|43654|53977|54833|53741|
+|2|Buena Vista|42407|45678|49364|53889|61646|65690|61917|
+|3|Corona Heights|41051|44269|48263|52768|61781|64072|59849|
+|4|Cow Hollow|52856|52816|56455|62256|75947|78557|71952|
+
+This dataframe can now be saved as `yearly_rent.csv` in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
