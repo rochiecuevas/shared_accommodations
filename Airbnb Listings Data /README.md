@@ -46,7 +46,7 @@ file_names = [file_name[0:8] for file_name in newlist] # get only the extraction
 Airbnb_df_dict = dict(zip(file_names,Airbnb_dflist))
 ```
 
-4. Because the dictionary has several sublevels, extracting information requires nested for-loops that iterate through each sublevel. The user-function called `extract` uses these nested for-loops to allow us to create a list for each of the metrics of interest: neighbourhoods, property types, daily rates, and dates.
+4. Because the dictionary has several sublevels, extracting information requires nested for-loops that iterate through each sublevel. The user-defined function called `extract` uses these nested for-loops to allow us to create a list for each of the metrics of interest: neighbourhoods, property types, daily rates, and dates.
 
 ```python
 # Create a function that extracts a wanted variable from the dictionary
