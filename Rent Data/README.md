@@ -98,7 +98,7 @@ The keys and values lists are then zipped into a dictionary and made into a data
 year_rent_df = pd.DataFrame(dict(zip(keys, values)))
 ```
 
-`Avg Price Per Year` column was created and calculated among years 2011-2017 and added into DataFrame. Column  `City` was added  to specify the locations of Neighborhoods. 
+`Avg Price Per Year` column was created and calculated among years 2011-2017 and added into DataFrame. Column `City` was added  to specify the locations of Neighborhoods. 
 
 ```python
 #Calculating Avg Rent Price Per Year 
@@ -112,18 +112,21 @@ year_rent_df["City"] = "San Francisco"
 year_rent_df.head()
 ```
 
+## Adding geolocations for each SF district
+
 New dependencies were imported.
 ```python
 #Importing dependencies to make a request for Lat and Lng
 import requests
 import json
+from config import api_key
 ```
 Geocoding was used  to obtain Coordinates(Lat & Lng) for each Neighborhood. 
 API key is not provided in this repo due to safety purposes. 
 
 ```python
 # create a params 
-params = {"key": "API KEY"}
+params = {"key": api_key}
 
 # Loop through the year_rent_df and run a lat/long search for each neighborhood
 for index, row in year_rent_df.iterrows():
@@ -148,7 +151,8 @@ year_rent_df.loc[index, "Lng"] = lat_lng["results"][0]["geometry"]["location"]["
 ## Output 
 The first five lines of the dataframe `year_rent_df` looks like this:
 
-||Neighborhood|2011|2012|2013|2014|2015|2016|2017|Avg Price Per Year|City|Lat|Lng| |---|---|---|---|---|---|---|---|---|---|---|---|---|
+||Neighborhood|2011|2012|2013|2014|2015|2016|2017|Avg Price Per Year|City|Lat|Lng| 
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |0|Bayview|30723|28821|30433|35338|42870|45681|45747|37087.571429|San Francisco|37.7304|-122.384|
 |1|Bernal Heights|34471|35739|38924|43654|53977|54833|53741|45048.428571|San Francisco|37.7389|-122.415|
 |2|Buena Vista|42407|45678|49364|53889|61646|65690|61917|54370.142857|San Francisco|37.8065|-122.421|
