@@ -58,11 +58,11 @@ The first five rows of the resulting dataframe looks like this:
 
 ||Assessor Neighborhood|Assessed Land Value|Closed Roll Year|
 |---|---|---|---|
-|0|Alamo Square|356275.880200|2007|
-|1|Anza Vista|249759.909457|2007|
-|2|Balboa Terrace|308412.952703|2007|
-|3|Bayview|181096.934692|2007|
-|4|Bayview Heights|128157.540281|2007|
+|0|Alamo Square|356275.88|2007|
+|1|Anza Vista|249759.91|2007|
+|2|Balboa Terrace|308412.95|2007|
+|3|Bayview|181096.93|2007|
+|4|Bayview Heights|128157.54|2007|
 
 It is saved as a csv file in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder, ready for analyses.
 
