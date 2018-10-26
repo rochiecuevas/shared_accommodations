@@ -1,13 +1,13 @@
 ## Data Collection
 
-The data sets `combine_updated.csv` and  `yearly_rent.csv` were previously obtained and cleared.
+The data sets `combine_updated.csv` and  `yearly_rent.csv` were previously obtained and cleaned.
 
 ## Getting Started
 
 Two Python (version 3.6) modules were used to prepare the data for further analyses and visualisation:
 - [Pandas](https://pandas.pydata.org/): to create data structures that could be processed and manipulated in Python
 - [NumPy](http://www.numpy.org/): to create an array
-- [cvs]: to read csv files
+- [CSV](https://docs.python.org/3/library/csv.html): to read csv files
 
 
 ```python
@@ -37,7 +37,7 @@ melted_df = pd.melt(rent_df,id_vars=["Neighborhood"],
 value_vars=my_col_names, var_name="Year",value_name="Yearly Rent Price")
 ```
 
-New DataFrame `rent_df2` was created by merging  DatafFrames `rent_df` and  `melted_df`  in order to include missing columns.
+New DataFrame `rent_df2` was created by merging  DataFrames `rent_df` and  `melted_df`  in order to include missing columns.
 
 ```python
 #merging two data frames
@@ -57,7 +57,7 @@ home_df = home_df.drop(['Unnamed: 0'], axis=1)
 home_df = home_df.drop(['Pct Change'], axis=1)
 ```
 
-New DataFrame `merged_csv` was created by merging DatafFrames `rent_df2` and  `home_df`  based on columns  `Neighborhood` and  `Year`.
+New DataFrame `merged_csv` was created by merging DataFrames `rent_df2` and  `home_df`  based on columns  `Neighborhood` and  `Year`.
 
 ```python
 #merging
