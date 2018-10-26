@@ -2,7 +2,7 @@
 ## Introduction
 ## Method
 ### Data sources
-Information about the housing options in San Francisco are available online. For this study, raw data on housing prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
+Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
 
 Table 1. Sources of raw data for accommodation costs in San Francisco
 
@@ -10,7 +10,7 @@ Table 1. Sources of raw data for accommodation costs in San Francisco
 |---|---|---|---|
 |Hotel rates|[SF City Performance Scorecards](https://sfgov.org/scorecards/tourism)|Jul 2004–May 2018|[Hotel Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data)|
 |Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|[Rent Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20Data)|
-|Housing prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2/data)|2007–2016|[Home Prices](https://github.com/rochiecuevas/shared_accommodations/tree/master/Home%20Prices)|
+|Home prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2/data)|2007–2016|[Home Prices](https://github.com/rochiecuevas/shared_accommodations/tree/master/Home%20Prices)|
 |Peer-to-peer short-term rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|May 2015–Dec 2017|[Airbnb Listings Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20)|
 
 ### Data cleaning
@@ -25,10 +25,28 @@ The [dataset](https://github.com/rochiecuevas/shared_accommodations/tree/master/
 #### Long-term rental data
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv) is composed of one csv file that contains monthly rental rates from November 2010 to September 2018. The [`Rent_Analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) jupyter notebook is used to clean the data as described [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/README.md). 
 
-#### Housing prices data
+#### Home prices data
 The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataDF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
 
-### Data analyses
+### Data processing/analyses
+Pandas and NumPy were used, unless otherwise stated.
+
+#### Hotel data
+The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_dailyrates.csv). To find more insights from the data, it was important to convert the daily rate to monthly rate. Calculations were made more realistic by using hotel occupancy rates as a factor in correcting the monthly rates; without this correction factor, it is assumed that hotels are consistently 100% occupied. The code in `hotel_rate_analysis.ipynb` was used the calculations following these general steps:
+1. Classify the months based on number of days;
+2. Calculate the monthly rates by multiplying the `average daily rate` with the number of days (__Note:__ For February, further classify the entries to those in regular or in leap years);
+3. Correct the monthly rates by multiplying these with the `hotel occupancy` rate.
+
+To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year.
+
+Monthly rates and yearly rates were saved into different csv files.
+
+#### Peer-to-peer short-term rental data
+#### Long-term rental data
+#### Home prices data
+
 ### Data visualisation
+Matplotlib.pyplot and seaborn modules were used to plot the data into graphs.
+
 ## Results
 ## Conclusions
