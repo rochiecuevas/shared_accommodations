@@ -3,7 +3,7 @@
 ## Method
 ### Data sources
 
-<details><summary>CLICK ME</summary>
+<details><summary>More info</summary>
 <p>
     
 Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
@@ -21,6 +21,10 @@ Table 1. Sources of raw data for accommodation costs in San Francisco
 </details>
 
 ### Data cleaning
+
+<details><summary>More info</summary>
+<p>
+    
 The raw datasets were cleaned using jupyter notebooks found inside each raw data folder. The cleaned data for each accommodation type was then written as a csv file and saved in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
 
 #### Hotel data
@@ -35,7 +39,14 @@ The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/
 #### Home prices data
 The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataDF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
 
+</p>
+</details>
+
 ### Data processing/analyses
+
+<details><summary>More info</summary>
+<p>
+    
 Pandas and NumPy were used, unless otherwise stated.
 
 #### Hotel data
@@ -50,8 +61,18 @@ To determine if there were trends across years, the yearly rates were calcuated 
 #### Long-term rental data
 #### Home prices data
 
+</p>
+</details>
+
 ### Data visualisation
+
+<details><summary>More info</summary>
+<p>
+
 Matplotlib.pyplot and seaborn modules were used to plot the data into graphs.
+
+</p>
+</details>
 
 ## Results
 ## Conclusions
