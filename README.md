@@ -2,6 +2,10 @@
 ## Introduction
 ## Method
 ### Data sources
+
+<details><summary>CLICK ME</summary>
+<p>
+    
 Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
 
 Table 1. Sources of raw data for accommodation costs in San Francisco
@@ -12,6 +16,9 @@ Table 1. Sources of raw data for accommodation costs in San Francisco
 |Long-term rental rates|[Zillow](https://www.zillow.com/san-francisco-ca/home-values/)|Nov 2010–Sep 2018|[Rent Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20Data)|
 |Home prices|[Data SF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2/data)|2007–2016|[Home Prices](https://github.com/rochiecuevas/shared_accommodations/tree/master/Home%20Prices)|
 |Peer-to-peer short-term rental rates|[Inside Airbnb](http://insideairbnb.com/san-francisco/?neighbourhood=&filterEntireHomes=false&filterHighlyAvailable=false&filterRecentReviews=false&filterMultiListings=false)|May 2015–Dec 2017|[Airbnb Listings Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20)|
+
+</p>
+</details>
 
 ### Data cleaning
 The raw datasets were cleaned using jupyter notebooks found inside each raw data folder. The cleaned data for each accommodation type was then written as a csv file and saved in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
@@ -37,9 +44,7 @@ The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.c
 2. Calculate the monthly rates by multiplying the `average daily rate` with the number of days (__Note:__ For February, further classify the entries to those in regular or in leap years);
 3. Correct the monthly rates by multiplying these with the `hotel occupancy` rate.
 
-To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year.
-
-Monthly rates and yearly rates were saved into different csv files.
+To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year. Monthly rates and yearly rates were then saved into different csv files.
 
 #### Peer-to-peer short-term rental data
 #### Long-term rental data
