@@ -54,7 +54,6 @@ home_df = home_df.rename(columns={'Assessor Neighborhood': 'Neighborhood',
 rent_df2["Year"] = rent_df2["Year"].astype(int)
 
 home_df = home_df.drop(['Unnamed: 0'], axis=1)
-home_df = home_df.drop(['Pct Change'], axis=1)
 ```
 
 New DataFrame `merged_csv` was created by merging DataFrames `rent_df2` and  `home_df`  based on columns  `Neighborhood` and  `Year`.
