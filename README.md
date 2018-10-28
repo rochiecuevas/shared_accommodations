@@ -253,8 +253,10 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 </details>
 
 ## Results
+In 2011 and in 2016, the housing price was highest, on average, in the Financial District while the most affordable neighbourhoods to own a home were Silver Tree and Visitacion Valley (Fig 1, 2). The skyrocketing price of owning a home in the Financial District can probably be attributed to the low supply of homes but a high demand, particularly with the tech boom in the area. On the other hand, Visitacion Valley and Silver Tree attract lower-income people because of the [presence of low-cost housing](http://sf-planning.org/sites/default/files/FileCenter/Documents/3635-chapter_6-5.pdf). 
 
-### Home prices
+<details><summary>More info</summary>
+<p>
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
 *Fig 1. Home Prices (USD) in San Francisco neighbourhoods in 2011* 
 
@@ -262,13 +264,15 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 *Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/home_price_district.svg?sanitize=True)
-*Fig 3. 2011 Home Prices (USD) in San Francisco neighbourhoods, grouped into districts
+*Fig 3. 2011 Home Prices (USD) in San Francisco neighbourhoods, grouped into districts*
 
 ### Long-term rent rates
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+
 *Fig 4. Annual Rent Prices (USD) in San Francisco in 2011*
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+
 *Fig 5. Annual Rent Prices (USD) in San Francisco in 2016*
 
 |Home price|Long-term rent|
@@ -288,7 +292,11 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 *Fig 8. Monthly Hotel Rates from 2005 to 2017*
 
 ### Peer-to-peer short-term rent rates
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
+*Fig 9. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
 
+</p>
+</details>
 
 ## Conclusions
