@@ -260,7 +260,8 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 ### Home prices
 ### Long-term rent rates
 ### Hotel rates
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)<img source = "https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+<img source = "https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True")
 ### Peer-to-peer short-term rent rates
 
 ## Conclusions
