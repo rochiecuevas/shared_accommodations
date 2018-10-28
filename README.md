@@ -2,12 +2,11 @@
 ## Introduction
 ## Method
 ### Data sources
+Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
 
 <details><summary>More info</summary>
 <p>
     
-Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
-
 Table 1. Sources of raw data for accommodation costs in San Francisco
 
 |Description|Website Source|Dates covered|Raw data folder|
@@ -27,16 +26,16 @@ The raw datasets were cleaned using jupyter notebooks found inside each raw data
 <p>
     
 #### Hotel data
-The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/hotel_indicators.csv) contains average daily rates, occupancy rates, and revenue per available room. The [`hotel_rates.ipynb`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data) jupyter notebook was used to pre-process the data. Pre-processing involved changing the format of the date and the retention of two variables: `Average Daily Rate` and `Hotel Occupancy`. Click [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/README.md) to see a detailed description of how the hotel indicators were pre-processed.
+The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/hotel_indicators.csv) contains average daily rates, occupancy rates, and revenue per available room. The [`hotel_rates.ipynb`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data) jupyter notebook was used to pre-process the data. Pre-processing involved changing the format of the date and the retention of two variables: "Average Daily Rate" and "Hotel Occupancy". Click [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/README.md) to see a detailed description of how the hotel indicators were pre-processed.
 
 #### Peer-to-peer short-term rental data
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) is organised into 28 csv files. The data was cleaned and the relevant metrics were merged into one csv file using the [`Airbnb_listings.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Listings%20Data%20/Airbnb_listings.ipynb) jupyter notebook. A detailed description can be found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Listings%20Data%20/README.md).
 
 #### Long-term rental data
-The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv) is composed of one csv file that contains monthly rental rates from November 2010 to September 2018. The [`Rent_Analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) jupyter notebook is used to clean the data as described [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/README.md). 
+The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv) is composed of one csv file that contains monthly rental rates from November 2010 to September 2018. The [`Rent_Analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) jupyter notebook was used to clean the data as described [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/README.md). 
 
 #### Home prices data
-The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataDF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). `Assessed Land Value` was used as a proxy for home price. Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
+The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataSF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). "Assessed Land Value" was used as a proxy for home price. Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
 
 </p>
 </details>
@@ -49,14 +48,14 @@ Pandas and NumPy were used, unless otherwise stated.
     
 #### Hotel data
 The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_dailyrates.csv). To find more insights from the data, it was important to convert the daily rate to monthly rate. Calculations were made more realistic by using hotel occupancy rates as a factor in correcting the monthly rates; without this correction factor, it is assumed that hotels are consistently 100% occupied. The code in `hotel_rate_analysis.ipynb` was used the calculations following these general steps:
-1. Classify the months based on number of days;
-2. Calculate the monthly rates by multiplying the `average daily rate` with the number of days (__Note:__ For February, further classify the entries to those in regular or in leap years);
-3. Correct the monthly rates by multiplying these with the `hotel occupancy` rate.
+1. Classify the months based on number of days.
+2. Calculate the monthly rates by multiplying the "average daily rate" with the number of days (__Note:__ For February, further classify the entries to those in regular or in leap years).
+3. Correct the monthly rates by multiplying these with the "hotel occupancy" rate.
 
 To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year. Monthly rates and yearly rates were then saved into different csv files.
 
 #### Peer-to-peer short-term rental data
-The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
+Analysis was conducted using the `AirbnbRateAnalysis.ipynb`(https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateAnalysis.ipynb) jupyter notebook. The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
 
 ```python
 # Remove the Unnamed:0 column
@@ -66,22 +65,22 @@ airbnb_rate = airbnb_df.drop(['Unnamed: 0'], axis=1)
 data = airbnb_rate
 ```
 
-The steps followed for data cleaning were:
-1. Extract the year substring from the values in the `date` column.
-2. For each year of Airbnb data, extract the relevant rows from the daframe, put the rows in a separate dataframe(e.g., " and then group the data based on neighbourhood and get the mean.
-3. Rename the "Average annual rate" for clarity.
-4. Merge the year dataframes on `neighbourhood`, and rename the columns.
-5. Create column entitled `District`.
-6. Populate the `District` column by filtering through lists of San Francisco districts.
-7. Save the dataframe as a csv file.
+The steps followed for data analysis followed were: 
+1. Extract the year substring from the values in the "date" column.
+2. Create separate dataframes for each year (e.g., "data_year_2015").
+3. Calculate the annual average rent for each dataframe.
+4. Merge the year dataframes based on "neighbourhood", and rename the columns according to year.
+5. Create column entitled "District".
+6. Populate the "District" column by finding the neighbourhood names in one of five lists of districts.
+7. Save the dataframe as `airbnbdataanalysis.csv`.
 
 #### Long-term rental data
 Data from [`rent_raw.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) was loaded as the `rent_df` dataframe. Calculating the yearly rate for each neighbourhood was done as follows:
-1. Create a user-defined function (`totals`) that automatically calculates yearly totals per neighbourhood.
-2. Create a list of months in two-digit combinations. 
-3. Use a list comprehension that uses the `totals` function.
-4. Create the dataframe `year_rent_df` which has each year and neighbourhoods as keys.
-5. Calculate the mean of Airbnb rental for each year-neighbourhood pair.
+1. Create a user-defined function ("totals") that automatically calculates yearly totals per neighbourhood.
+2. Create a list of years in two-digit combinations. 
+3. Use a list comprehension that uses the "totals" function to calculate yearly totals.
+4. Create the dataframe "year_rent_df" in which year and neighbourhoods are the column headers.
+5. Calculate the mean of long-term rental for each year-neighbourhood pair.
 6. Add geolocation data extracted from Google Maps Geocoding API.
 7. Save the dataframe as a csv file, `yearly_rent.csv`.
 .
@@ -155,7 +154,7 @@ mon_rate_df.sort_values("Date", inplace = True)
 mon_rate_df = mon_rate_df.reset_index(drop = True)
 ```
 
-Because years 2004 and 2018 had incomplete data (less than 12 months), data from these years were excluded from the visualisation.
+Because years 2004 and 2018 had incomplete data (less than 12 months), data from these years were excluded from the graphs.
 
 ```python
 # Exclude data from 2004 and 2018
@@ -164,7 +163,7 @@ inc_str = [str(year) for year in inc] # pass the years as string (because the da
 mon_rate_df = mon_rate_df.loc[~mon_rate_df["Date"].str.contains("|".join(inc_str))] # get the data from 2005–2017
 ```
 
-`Date` and `Corrected Monthly Rate` were placed into a new dataframe. Because `Date` values were strings, these were converted into datetime and then into period (i.e., the date corresponded to a time interval rather than to an actual date).
+The "Date" and "Corrected Monthly Rate" columns were placed into a new dataframe. Because "Date" values were strings, these were converted into datetime and then into period (i.e., the date corresponded to a time interval rather than to an actual date) formats.
 
 ```python
 # Data is in monthly periods so set period to monthly
@@ -197,7 +196,7 @@ The monthly data could be aggregated into quarters as well, and their means obta
 q_mean = mon_rate_df2.resample("Q-NOV").mean() 
 ```
 
-The quarterly data could then be plotted and saved as an svg file.
+The quarterly data was plotted and saved as an svg file.
 
 ```python
 # Plot data by quarter
@@ -253,33 +252,36 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 </details>
 
 ## Results
-In 2011 and in 2016, the housing price was highest, on average, in the Financial District while the most affordable neighbourhoods to own a home were Silver Tree and Visitacion Valley (Fig 1, 2). The skyrocketing price of owning a home in the Financial District can probably be attributed to the low supply of homes but a high demand, particularly with the tech boom in the area. On the other hand, Visitacion Valley and Silver Tree attract lower-income people because of the [presence of low-cost housing](http://sf-planning.org/sites/default/files/FileCenter/Documents/3635-chapter_6-5.pdf). 
+In 2011 and in 2016, the housing price was highest, on average, in the Financial District while the most affordable neighbourhoods to own a home were Silver Tree and Visitacion Valley (Fig 1, 2). 
 
 <details><summary>More info</summary>
 <p>
-    
+
+The skyrocketing price of owning a home in the Financial District can probably be attributed to the low supply of homes and a high demand, particularly with the tech boom in the area. On the other hand, Visitacion Valley features [more affordable housing options](http://sf-planning.org/sites/default/files/FileCenter/Documents/3635-chapter_6-5.pdf), but limited access to commercial and retail establishments. [Silver Terrace](https://zephyrre.com/communities/silver-terrace/) does not have large commercial establishments either.
+
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
 *Fig 1. Home Prices (USD) in San Francisco neighbourhoods in 2011* 
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
 *Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
 
-A look into the yearly trend at the district level indicates that the Downtown area of San Francisco is the most expensive neighbouhood from 2007 to 2016. This is most likely driven by the home prices in the Financial District.
-
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/home_price_district.svg?sanitize=True)
-*Fig 3. 2011 Home Prices (USD) in San Francisco neighbourhoods, grouped into districts*
-
-It is notable that long-term rental rates in the Financial District was not as different as the other neighbourhood. Three neighbourhoods popped out having higher long-term rental rates in 2011 and in 2016 (Fig 4, 5): Presidio Heights, Sea Cliff, and St. Francis Wood. Sea Cliff and St. Francis Wood are classified as ["residence parks"](https://en.wikipedia.org/wiki/San_Francisco_Residence_Parks).
+It is notable that long-term rental rates in the Financial District were not as different as the other neighbourhoods. Three neighbourhoods popped out having higher long-term rental rates in 2011 and in 2016 (Fig 3, 4): Presidio Heights, Sea Cliff, and St. Francis Wood. Sea Cliff and St. Francis Wood are classified as ["residence parks"](https://en.wikipedia.org/wiki/San_Francisco_Residence_Parks). [Presidio Heights](https://www.compass.com/neighborhood-guides/sf/presidio-heights/) took the top spot for rental rates; these could be attributed to its proximity to nature despite its closeness to the hustle and bustle of the City.
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
-
-*Fig 4. Annual Rent Prices (USD) in San Francisco in 2011*
+*Fig 3. Annual Rent Prices (USD) in San Francisco in 2011*
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+*Fig 4. Annual Rent Prices (USD) in San Francisco in 2016*
 
-*Fig 5. Annual Rent Prices (USD) in San Francisco in 2016*
+The heatmaps (Fig 5) show the most expensive places (red) to live, providing some geographic context to Fig 1–4.
 
-The trends in price of accommodations increased from 2011 to 2016 (Fig 6). However, the rates of increases are different. The home price increases were more gradual than that for long-term rental rate. From 2012 to 2015, the increase in rental rates was steep; but the increases seemed to slow down in 2015–2016.
+|Home price|Long-term rent|
+|---|---|
+|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/house.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/rent.png)|
+
+*Fig 5. Comparison of Geographic Distribution of Home Prices and Long-Term Rental Rates*
+
+The trends in price of accommodations increased from 2011 to 2016 (Fig 6). However, the rates of increases are different. The home price increases were more gradual than that for long-term rental rate. From 2012 to 2015, the increase in long-term rental rates was steep; but the increases seemed to slow down in 2015–2016.
 
 |Home price|Long-term rent|
 |---|---|
@@ -287,24 +289,15 @@ The trends in price of accommodations increased from 2011 to 2016 (Fig 6). Howev
 
 *Fig 6. Annual Home Prices and Rent Rates (USD) in San Francisco from 2011 to 2016*
 
-The heatmaps (Fig 7) show the most expensive places (red) to live, providing some geographic context to the bar graphs.
-
-|Home price|Long-term rent|
-|---|---|
-|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/house.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/rent.png)|
-
-*Fig 7. Comparison of Geographic Distribution of Home Prices and Long-Term Rental Rates*
-
-Hotel rates are also going up (Fig 8). There was a drop in hotel rates between 2008 and 2009, but this can probably be attributed to the Recession during that time. Since 2009, however, the hotel rates have grown very fast. In 2015–2017, the data suggests that the increase in hotel rates is slowing down. 
+Hotel rates also went up between 2005 and 2017 (Fig 7). There was a drop in hotel rates between 2008 and 2009, but this can probably be attributed to the Recession during that time. Since 2009, however, the hotel rates grew at a rate faster then in 2005–2008. In 2015–2017, the data suggests that the increase in hotel rates is slowing down. 
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
-*Fig 8. Monthly Hotel Rates from 2005 to 2017*
+*Fig 7. Monthly Hotel Rates from 2005 to 2017*
 
-The peer-to-peer short-term rental rates appeared to by highest in Presidio and Presidio Heights, mimicking patterns with long-term rental rates.
+The slowing growth trend for both hotel and long-term rental rates *might* be an effect of the entry of peer-to-peer short-term rental options. The short-term rental rates (Fig 8) appeared to by highest in Presidio and Presidio Heights, mimicking patterns of long-term rental rates. However, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices this point (i.e., there are only three data points for short-term rental).
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
-*Fig 9. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
-
+*Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
 </p>
 </details>
