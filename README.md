@@ -58,8 +58,38 @@ The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.c
 To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year. Monthly rates and yearly rates were then saved into different csv files.
 
 #### Peer-to-peer short-term rental data
+The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
+
+```python
+# Remove the Unnamed:0 column
+airbnb_rate = airbnb_df.drop(['Unnamed: 0'], axis=1)
+
+# Rename the dataframe 
+data = airbnb_rate
+```
+
+The steps followed for data cleaning were:
+1. Extract the year substring from the values in the `date` column.
+2. For each year of Airbnb data, extract the relevant rows from the daframe, put the rows in a separate dataframe(e.g., " and then group the data based on neighbourhood and get the mean.
+3. Rename the "Average annual rate" for clarity.
+4. Merge the year dataframes on `neighbourhood`, and rename the columns.
+5. Create column entitled `District`.
+6. Populate the `District` column by filtering through lists of San Francisco districts.
+7. Save the dataframe as a csv file.
+
 #### Long-term rental data
-#### Home prices data
+Data from [`rent_raw.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) was loaded as the `rent_df` dataframe. Calculating the yearly rate for each neighbourhood was done as follows:
+1. Create a user-defined function (`totals`) that automatically calculates yearly totals per neighbourhood.
+2. Create a list of months in two-digit combinations. 
+3. Use a list comprehension that uses the `totals` function.
+4. Create the dataframe `year_rent_df` which has each year and neighbourhoods as keys.
+5. Calculate the mean of Airbnb rental for each year-neighbourhood pair.
+6. Add geolocation data extracted from Google Maps Geocoding API.
+7. Save the dataframe as a csv file, `yearly_rent.csv`.
+.
+
+#### Merged home price and rental data
+Two csv files were merged ([`combine_updated.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/combine_updated.csv) and [`yearly_rent.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/yearly_rent.csv)) in an attempt to look at trends side-by-side for these two housing sectors. The description of the merging is found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Merged/README.md).
 
 </p>
 </details>
@@ -69,7 +99,8 @@ To determine if there were trends across years, the yearly rates were calcuated 
 <details><summary>More info</summary>
 <p>
 
-Matplotlib.pyplot and seaborn modules were used to plot the data into graphs.
+Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb). The main output 
+
 
 </p>
 </details>
