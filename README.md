@@ -99,8 +99,51 @@ Two csv files were merged ([`combine_updated.csv`](https://github.com/rochiecuev
 <details><summary>More info</summary>
 <p>
 
-Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb). The main output 
+Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb).
 
+Documentation of __long-term rental rates__ are found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20and%20Housing%20Visualization/README.md).
+
+On the other hand, __hotel rate__ trends were visualised with bar graphs and with time series line plots. The seaborn plot style was used.
+
+```python
+# graphing style
+plt.style.use("seaborn")
+```
+
+*bar graphs.* The dataframe was sorted by year.
+
+```python
+# Sort the dataframe by year
+year_df.sort_values("Year", inplace = True)
+year_df = year_df.reset_index(drop = True)
+```
+
+And incomplete years were taken out of the dataframe.
+
+```python
+# Create a subset of complete years (incomplete: 2004 and 2018)
+inc = [2004, 2018]
+
+year_subdf = year_df[~year_df["Year"].isin(inc)]
+```
+
+The clean data was then plotted into a bar graph.
+
+```python
+# Create a bar graph to show trends in hotel yearly rates
+plt.bar("Year", "Yearly Rate", data = year_subdf)
+plt.xlabel("Year")
+plt.ylabel("Annual Hotel Rate (USD)")
+plt.ylim(0, max(year_subdf["Yearly Rate"] + 20000))
+```
+
+The output image was saved in the [Images](https://github.com/rochiecuevas/shared_accommodations/tree/master/Images) folder.
+
+```python
+# Save figure
+plt.savefig("Images/hotel_yr_rates.svg")
+plt.show()
+```
 
 </p>
 </details>
