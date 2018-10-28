@@ -258,14 +258,31 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 ## Results
 
 ### Home prices
-### Long-term rent rates
-### Hotel rates
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
-*Fig 1. Home Prices (USD) in San Francisco in 2011* 
+*Fig 1. Home Prices (USD) in San Francisco neighbourhoods in 2011* 
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
-*Fig 2. Home Prices (USD) in San Francisco in 2016* 
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+*Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
+
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/home_price_district.svg?sanitize=True)
+*Fig 3. 2011 Home Prices (USD) in San Francisco neighbourhoods, grouped into districts
+
+### Long-term rent rates
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+*Fig 4. Annual Rent Prices (USD) in San Francisco in 2011*
+
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+*Fig 5. Annual Rent Prices (USD) in San Francisco in 2016*
+
+|Home price|Long-term rent|
+|---|---|
+|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Land%20Value%20Change.svg?sanitize=True)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20Change.svg?sanitize=True)|
+
+### Hotel rates
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
+*Fig 6. Monthly Hotel Rates from 2005 to 2017*
 
 ### Peer-to-peer short-term rent rates
+
 
 ## Conclusions
