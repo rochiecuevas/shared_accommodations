@@ -274,11 +274,13 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 |Home price|Long-term rent|
 |---|---|
 |![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Land%20Value%20Change.svg?sanitize=True)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20Change.svg?sanitize=True)|
+
 *Fig 6. Annual Home Prices and Rent Rates (USD) in San Francisco from 2011 to 2016*
 
 |Home price|Long-term rent|
 |---|---|
 |![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/house.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/rent.png)|
+
 *Fig 7. Comparison of Geographic Distribution of Home Prices and Long-Term Rental Rates*
 
 ### Hotel rates
