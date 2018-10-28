@@ -21,12 +21,11 @@ Table 1. Sources of raw data for accommodation costs in San Francisco
 </details>
 
 ### Data cleaning
+The raw datasets were cleaned using jupyter notebooks found inside each raw data folder. The cleaned data for each accommodation type was then written as a csv file and saved in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
 
 <details><summary>More info</summary>
 <p>
     
-The raw datasets were cleaned using jupyter notebooks found inside each raw data folder. The cleaned data for each accommodation type was then written as a csv file and saved in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
-
 #### Hotel data
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/hotel_indicators.csv) contains average daily rates, occupancy rates, and revenue per available room. The [`hotel_rates.ipynb`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Hotel%20Data) jupyter notebook was used to pre-process the data. Pre-processing involved changing the format of the date and the retention of two variables: `Average Daily Rate` and `Hotel Occupancy`. Click [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Hotel%20Data/README.md) to see a detailed description of how the hotel indicators were pre-processed.
 
@@ -43,12 +42,11 @@ The dataset is not uploaded because it exceeds the file size set by GitHub. It i
 </details>
 
 ### Data processing/analyses
+Pandas and NumPy were used, unless otherwise stated.
 
 <details><summary>More info</summary>
 <p>
     
-Pandas and NumPy were used, unless otherwise stated.
-
 #### Hotel data
 The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_dailyrates.csv). To find more insights from the data, it was important to convert the daily rate to monthly rate. Calculations were made more realistic by using hotel occupancy rates as a factor in correcting the monthly rates; without this correction factor, it is assumed that hotels are consistently 100% occupied. The code in `hotel_rate_analysis.ipynb` was used the calculations following these general steps:
 1. Classify the months based on number of days;
@@ -95,11 +93,10 @@ Two csv files were merged ([`combine_updated.csv`](https://github.com/rochiecuev
 </details>
 
 ### Data visualisation
+Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb).
 
 <details><summary>More info</summary>
 <p>
-
-Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb).
 
 Documentation of visualising __home prices and long-term rental rates__ are found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20and%20Housing%20Visualization/README.md).
 
@@ -277,12 +274,19 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 |Home price|Long-term rent|
 |---|---|
 |![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Land%20Value%20Change.svg?sanitize=True)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20Change.svg?sanitize=True)|
+*Fig 6. Annual Home Prices and Rent Rates (USD) in San Francisco from 2011 to 2016*
+
+|Home price|Long-term rent|
+|---|---|
+|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/house.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/rent.png)|
+*Fig 7. Comparison of Geographic Distribution of Home Prices and Long-Term Rental Rates*
 
 ### Hotel rates
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
-*Fig 6. Monthly Hotel Rates from 2005 to 2017*
+*Fig 8. Monthly Hotel Rates from 2005 to 2017*
 
 ### Peer-to-peer short-term rent rates
+
 
 
 ## Conclusions
