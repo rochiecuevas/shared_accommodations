@@ -264,10 +264,13 @@ In 2011 and in 2016, the housing price was highest, on average, in the Financial
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
 *Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
 
+A look into the yearly trend at the district level indicates that the Downtown area of San Francisco is the most expensive neighbouhood from 2007 to 2016. This is most likely driven by the home prices in the Financial District.
+
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/home_price_district.svg?sanitize=True)
 *Fig 3. 2011 Home Prices (USD) in San Francisco neighbourhoods, grouped into districts*
 
-### Long-term rent rates
+It is notable that long-term rental rates in the Financial District was not as different as the other neighbourhood. Three neighbourhoods popped out having higher long-term rental rates in 2011 and in 2016 (Fig 4, 5): Presidio Heights, Sea Cliff, and St. Francis Wood. Sea Cliff and St. Francis Wood are classified as ["residence parks"](https://en.wikipedia.org/wiki/San_Francisco_Residence_Parks).
+
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
 
 *Fig 4. Annual Rent Prices (USD) in San Francisco in 2011*
@@ -276,11 +279,15 @@ In 2011 and in 2016, the housing price was highest, on average, in the Financial
 
 *Fig 5. Annual Rent Prices (USD) in San Francisco in 2016*
 
+The trends in price of accommodations increased from 2011 to 2016 (Fig 6). However, the rates of increases are different. The home price increases were more gradual than that for long-term rental rate. From 2012 to 2015, the increase in rental rates was steep; but the increases seemed to slow down in 2015–2016.
+
 |Home price|Long-term rent|
 |---|---|
 |![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Land%20Value%20Change.svg?sanitize=True)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20Change.svg?sanitize=True)|
 
 *Fig 6. Annual Home Prices and Rent Rates (USD) in San Francisco from 2011 to 2016*
+
+The heatmaps (Fig 7) show the most expensive places (red) to live, providing some geographic context to the bar graphs.
 
 |Home price|Long-term rent|
 |---|---|
@@ -288,11 +295,13 @@ In 2011 and in 2016, the housing price was highest, on average, in the Financial
 
 *Fig 7. Comparison of Geographic Distribution of Home Prices and Long-Term Rental Rates*
 
-### Hotel rates
+Hotel rates are also going up (Fig 8). There was a drop in hotel rates between 2008 and 2009, but this can probably be attributed to the Recession during that time. Since 2009, however, the hotel rates have grown very fast. In 2015–2017, the data suggests that the increase in hotel rates is slowing down. 
+
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
 *Fig 8. Monthly Hotel Rates from 2005 to 2017*
 
-### Peer-to-peer short-term rent rates
+The peer-to-peer short-term rental rates appeared to by highest in Presidio and Presidio Heights, mimicking patterns with long-term rental rates.
+
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
 *Fig 9. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
