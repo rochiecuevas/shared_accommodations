@@ -260,7 +260,7 @@ In 2011 and in 2016, the housing price was highest, on average, in the Financial
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
 *Fig 1. Home Prices (USD) in San Francisco neighbourhoods in 2011* 
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
 *Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/home_price_district.svg?sanitize=True)
