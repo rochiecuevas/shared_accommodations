@@ -101,16 +101,17 @@ Two csv files were merged ([`combine_updated.csv`](https://github.com/rochiecuev
 
 Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb).
 
-Documentation of __long-term rental rates__ are found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20and%20Housing%20Visualization/README.md).
+Documentation of visualising __home prices and long-term rental rates__ are found [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20and%20Housing%20Visualization/README.md).
 
-On the other hand, __hotel rate__ trends were visualised with bar graphs and with time series line plots. The seaborn plot style was used.
+On the other hand, __hotel rate__ trends were visualised with bar graphs and with time series line plots. The seaborn plot style was used. Yearly, monthly, and quarterly average rates were plotted.
 
 ```python
 # graphing style
 plt.style.use("seaborn")
 ```
 
-*bar graphs.* The dataframe was sorted by year.
+__*bar graphs*__ 
+The dataframe generated from [`hotel_yrrate.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_yrrate.csv) was sorted by year.
 
 ```python
 # Sort the dataframe by year
@@ -145,8 +146,121 @@ plt.savefig("Images/hotel_yr_rates.svg")
 plt.show()
 ```
 
+__*difference plots*__
+The plotting procedure was adapted from [Pymaceuticals](https://github.com/rochiecuevas/Pymaceuticals/blob/master/pymaceuticals_starter.ipynb)
+
+__*line graphs*__
+The data in [`hotel_monthlyrate.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_monthlyrate.csv) was loaded as a dataframe and then sorted by date.
+
+```python
+# Sort values by date
+mon_rate_df.sort_values("Date", inplace = True)
+mon_rate_df = mon_rate_df.reset_index(drop = True)
+```
+
+Because years 2004 and 2018 had incomplete data (less than 12 months), data from these years were excluded from the visualisation.
+
+```python
+# Exclude data from 2004 and 2018
+inc_str = [str(year) for year in inc] # pass the years as string (because the date is in string form)
+
+mon_rate_df = mon_rate_df.loc[~mon_rate_df["Date"].str.contains("|".join(inc_str))] # get the data from 2005–2017
+```
+
+`Date` and `Corrected Monthly Rate` were placed into a new dataframe. Because `Date` values were strings, these were converted into datetime and then into period (i.e., the date corresponded to a time interval rather than to an actual date).
+
+```python
+# Data is in monthly periods so set period to monthly
+# Resource: http://earthpy.org/time_series_analysis_with_pandas_part_2.html
+
+mon_rate_df2["Corrected Monthly Rate"].index = pd.to_datetime(mon_rate_df2["Corrected Monthly Rate"].index)
+    # string converted to datetime format
+    
+mon_rate_df2.index = mon_rate_df2["Corrected Monthly Rate"].to_period(freq = "M").index 
+    # convert time stamps to time periods
+```
+
+Monthly trends were then plotted using the pandas.DataFrame.plot function and saved as an .svg file.
+
+```python
+# Plot time series for corrected monthly rate
+time_series01 = mon_rate_df2.plot.line(figsize = (8,5), legend = False)
+time_series01.set_ylabel("Corrected Monthly Rate (USD)")
+
+# Save image
+plt.savefig("Images/hotel_timeseries01.svg")
+```
+
+The monthly data could be aggregated into quarters as well, and their means obtained.
+
+```python
+# Get quarterly data
+# start the quarter from November so that the data from Q1-Q3 of 2015 are included
+
+q_mean = mon_rate_df2.resample("Q-NOV").mean() 
+```
+
+The quarterly data could then be plotted and saved as an svg file.
+
+```python
+# Plot data by quarter
+time_series02 = q_mean[q_mean.index.quarter == 1].plot(figsize = (8,5), legend = False)
+time_series02.set_ylabel("Quarterly Means (USD)")
+
+# Save image
+plt.savefig("Images/hotel_timeseries02.svg")
+```
+
+Visualisation of __peer-to-peer short-term rental rates__ involved loading the `airbnbdataanalysis.csv` into a dataframe and using the pandas.DataFrame.plot function to generate a plot containing subplots for each year.
+
+```python
+# Plot data for 2015–2017 in subplots
+ax = df.plot.bar(x = "neighbourhood", subplots = True,
+                 figsize = (8,15), title = ["", "", ""])
+ax[0].set_ylabel("Average Annual Rate (USD)")
+ax[1].set_ylabel("Average Annual Rate (USD)")
+ax[2].set_ylabel("Average Annual Rate (USD)")
+
+ax[0].set_ylim(0, 220000)
+ax[1].set_ylim(0, 220000)
+ax[2].set_ylim(0, 220000)
+
+
+# Save file as svg
+plt.tight_layout()
+plt.savefig("../Images/Airbnb_annual_avg.svg")
+plt.savefig("../Images/Airbnb_annual_avg.png")
+```
+
+Since district infomation was available, it was possible to group the data by district and get the mean rates.
+
+```python
+# Group the data by neighbourhood
+df2 = round(df.groupby("District").mean(),2)
+```
+
+The average rates for each year could then be plotted in a bar chart by district, and then saved.
+
+```python
+# Plot annual average rate of Airbnb
+ax2 = df2.plot.bar(figsize = (8, 8))
+ax2.set_ylabel("Average Annual Rate (USD)")
+
+# Save file as svg
+plt.tight_layout()
+plt.savefig("../Images/Airbnb_annual_avg2.svg")
+plt.savefig("../Images/Airbnb_annual_avg2.png")
+```
+
 </p>
 </details>
 
 ## Results
+
+### Home prices
+### Long-term rent rates
+### Hotel rates
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)<img source = "https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+### Peer-to-peer short-term rent rates
+
 ## Conclusions
