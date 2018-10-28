@@ -37,7 +37,7 @@ The [dataset](https://github.com/rochiecuevas/shared_accommodations/tree/master/
 The [dataset](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/rent_raw.csv) is composed of one csv file that contains monthly rental rates from November 2010 to September 2018. The [`Rent_Analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) jupyter notebook is used to clean the data as described [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/README.md). 
 
 #### Home prices data
-The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataDF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
+The dataset is not uploaded because it exceeds the file size set by GitHub. It is, however, downloadable as a csv file from [DataDF](https://data.sfgov.org/Housing-and-Buildings/Assessor-Historical-Secured-Property-Tax-Rolls/wv5m-vpq2). `Assessed Land Value` was used as a proxy for home price. Only the columns of interest were included in a dataframe, using the [`DataHome.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/DataHome.ipynb) jupyter notebook. The procedure for cleaning the dataset is detailed [here](https://github.com/rochiecuevas/shared_accommodations/blob/master/Home%20Prices/README.md).
 
 </p>
 </details>
@@ -261,7 +261,11 @@ plt.savefig("../Images/Airbnb_annual_avg2.png")
 ### Long-term rent rates
 ### Hotel rates
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
-<img src = "https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True")
+*Fig 1. Home Prices (USD) in San Francisco in 2011* 
+
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
+*Fig 2. Home Prices (USD) in San Francisco in 2016* 
+
 ### Peer-to-peer short-term rent rates
 
 ## Conclusions
