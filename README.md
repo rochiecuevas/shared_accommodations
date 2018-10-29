@@ -321,7 +321,7 @@ Zooming into the neighbourhood level (Fig 11), it is clear that Mission, South o
 Heatmaps (Fig 12) show the progression in the number of short-term rental listings and rates. 
 
 |year|short-term rental rates|number of short-term listings|
-|---|---|---|---|
+|---|---|---|
 |2015|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_rates_2015.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_listings_2015.png)|
 |2016|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_rates_2016.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_listings_2016.png)|
 |2017|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_rates_2017.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_listings_2017.png)|
