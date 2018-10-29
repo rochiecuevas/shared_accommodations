@@ -303,15 +303,13 @@ The slowing growth trend for both hotel and long-term rental rates *might* be an
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)<br>
 *Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
-In terms of districts, Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts.
+In terms of districts (Fig 9), Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts. The number of listings of peer-to-peer short-term rental clearly increased from 2015 to 2017. In 2015 and 2016, Outside Lands had the fewest listings for peer-to-peer short-term property rental. By 2017, however, the district already had the same number of listings as North of Downtown. On the other hand, Western Addition had the most number of listings for the three years. It is interesting to note that the number of listings for short-term rental did not increase between 2016 and 2017 in the North of Downtown.
 
-![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg2.svg?sanitize=True)<br>
-*Fig 9. Comparison of Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Districts*
+|rates|number of listings|
+|---|---|
+|![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg2.svg?sanitize=True)|![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_district_listings.svg?sanitize=True)|
 
-The number of listings of peer-to-peer short-term rental clearly increased from 2015 to 2017 (Fig 10). In 2015 and 2016, Outside Lands had the fewest listings for peer-to-peer short-term property rental. By 2017, however, the district already had the same number of listings as North of Downtown. On the other hand, Western Addition had the most number of listings for the three years. It is interesting to note that the number of listings for short-term rental did not increase between 2016 and 2017 in the North of Downtown.
-
-![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_district_listings.svg?sanitize=True)<br>
-*Fig 10. Comparison of the Number of Peer-to-Peer Short-Term Rental Listings in San Francisco Districts*
+*Fig 9. Comparison of Peer-to-Peer Short-Term Rental Rates (USD) and number of listings in San Francisco Districts*
 
 Zooming into the neighbourhood level (Fig 11), it is clear that Mission, South of Market, and Western Addition had the most number of listings for peer-to-peer short-term rental units across the three years. On the other hand, Presidio and Treasure Island had fewest listings.
 
