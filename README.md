@@ -303,7 +303,7 @@ The slowing growth trend for both hotel and long-term rental rates *might* be an
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)<br>
 *Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
-In terms of districts (Fig 9), Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts. The number of listings of peer-to-peer short-term rental clearly increased from 2015 to 2017. In 2015 and 2016, Outside Lands had the fewest listings for peer-to-peer short-term property rental. By 2017, however, the district already had the same number of listings as North of Downtown. On the other hand, Western Addition had the most number of listings for the three years. It is interesting to note that the number of listings for short-term rental did not increase between 2016 and 2017 in the North of Downtown.
+In terms of districts (Fig 9), Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts. The number of listings of peer-to-peer short-term rental clearly increased from 2015 to 2017. In 2015 and 2016, Outside Lands had the fewest listings for peer-to-peer short-term property rental. By 2017, however, the district already had the same number of listings as North of Downtown. On the other hand, Western Addition had the most number of listings for the three years. 
 
 |rates|number of listings|
 |---|---|
@@ -311,12 +311,12 @@ In terms of districts (Fig 9), Western Addition and Outside Lands experienced a 
 
 *Fig 9. Comparison of Peer-to-Peer Short-Term Rental Rates (USD) and number of listings in San Francisco Districts*
 
-Zooming into the neighbourhood level (Fig 11), it is clear that Mission, South of Market, and Western Addition had the most number of listings for peer-to-peer short-term rental units across the three years. On the other hand, Presidio and Treasure Island had fewest listings.
+Zooming into the neighbourhood level (Fig 10), it is clear that Mission, South of Market, and Western Addition had the most number of listings for peer-to-peer short-term rental units across the three years. On the other hand, Presidio and Treasure Island had fewest listings.
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_neighbourhood_listings.svg?sanitize=True)<br>
-*Fig 11. Comparison of the Number of Peer-to-Peer Short-Term Rental Listings in San Francisco Neighbourhoods*
+*Fig 10. Comparison of the Number of Peer-to-Peer Short-Term Rental Listings in San Francisco Neighbourhoods*
 
-Heatmaps (Fig 12) show the progression in the number of short-term rental listings and rates. 
+Heatmaps (Fig 11) show the progression in the number of short-term rental listings and rates. It is interesting to note that there were two regions of particularly high rates for short-term rental properties; however, the rates spiked for most neighbourhoods in the next two years. In 2015, there was only one hotspot for short-term rental listings, but these quickly spread in the subsequent years.
 
 |year|short-term rental rates|number of short-term listings|
 |---|---|---|
@@ -324,7 +324,7 @@ Heatmaps (Fig 12) show the progression in the number of short-term rental listin
 |2016|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_rates_2016.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_listings_2016.png)|
 |2017|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_rates_2017.png)|![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/STR_listings_2017.png)|
 
-*Fig 12. Geographical distribution of short-term rental rates and listings*
+*Fig 11. Geographical distribution of short-term rental rates and listings*
 
 At this point, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices (i.e., there are only three data points for short-term rental). 
 
