@@ -1,5 +1,9 @@
 # Effects of peer-to-peer short-term rental to the housing market in San Francisco
 ## Introduction
+San Francisco is [one of the most visited cities in the USA](https://www.businessinsider.com/most-visited-us-cities-2017-12?r=UK&IR=T). It attracts about [25 million visitors](https://www.sftravel.com/article/san-francisco-travel-reports-record-breaking-year-tourism), with tourism being its biggest industry. With many visitors streaming in, residents have started renting out their spaces for [short durations](https://businessportal.sfgov.org/start/starter-kits/short-term-rental) for extra income and use [peer-to-peer property rental](https://en.wikipedia.org/wiki/Peer-to-peer_property_rental) platforms such as Airbnb to list their available spaces. 
+
+This study aims to determine the impact of peer-to-peer short term rental to the housing market in San Francisco. It is hypothesised that short-term rent have effects on hotel rates, long-term rental rates, and home prices in the City. 
+
 ## Method
 ### Data sources
 Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
@@ -235,7 +239,7 @@ Since district infomation was available, it was possible to group the data by di
 df2 = round(df.groupby("District").mean(),2)
 ```
 
-The average rates for each year could then be plotted in a bar chart by district, and then saved.
+The average rates for each year were be plotted in a bar chart by district, and then saved.
 
 ```python
 # Plot annual average rate of Airbnb
@@ -294,7 +298,9 @@ Hotel rates also went up between 2005 and 2017 (Fig 7). There was a drop in hote
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
 *Fig 7. Monthly Hotel Rates from 2005 to 2017*
 
-The slowing growth trend for both hotel and long-term rental rates *might* be an effect of the entry of peer-to-peer short-term rental options. The short-term rental rates (Fig 8) appeared to by highest in Presidio and Presidio Heights, mimicking patterns of long-term rental rates. However, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices this point (i.e., there are only three data points for short-term rental).
+The slowing growth trend for both hotel and long-term rental rates *might* be an effect of the entry of peer-to-peer short-term rental options. The short-term rental rates (Fig 8) appeared to by highest in Presidio and Presidio Heights, mimicking patterns of long-term rental rates. The rates were lowest in Crocker Amazon in 2015 and 2016; but by 2017, the rates there have overtaken those of Excelsior, Treasure Island/Yerba Buena Island, and Visitacion Valley. [Crocker Amazon](https://en.wikipedia.org/wiki/Crocker-Amazon,_San_Francisco) and [Excelsior](https://en.wikipedia.org/wiki/Excelsior_District,_San_Francisco) are described as ethnically diverse residential areas, with single-family homes. [Treasure Island/Yerba Buena Island](https://sftreasureisland.org/living-treasure-island), on the other hand, feature only rental housing. In 2018, all short-term rental listings for Treasure Island have been [wiped out](https://www.sfchronicle.com/business/article/SF-short-term-rentals-transformed-as-Airbnb-12617798.php) out because the agency handling rentals does not allow vacation rentals.
+
+At this point, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices (i.e., there are only three data points for short-term rental).
 
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
 *Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
@@ -302,4 +308,7 @@ The slowing growth trend for both hotel and long-term rental rates *might* be an
 </p>
 </details>
 
-## Conclusions
+## Insights
+This study originally set out to determine if the rise of peer-to-peer short-term rental have an effect on the housing market in San Francisco. Because there are only three points (based on available annual data), the impact of short-term rentals to the San Francisco housing market cannot be assessed. 
+
+However, an unintended effect of this study was the identification of the neighbourhoods with most affordable housing (Silver Tree and Visitacion Valley), the most expensive housing (Financial District), the most expensive long-term rental rates  and short-term rental rates (both Presidio Heights), and the most affordable short-term rental rates (Visitacion Valley and Treasure Island/Yerba Buena Island in 2017).
