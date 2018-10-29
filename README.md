@@ -73,9 +73,9 @@ The steps followed for data analysis followed were:
 1. Extract the year substring from the values in the "date" column.
 2. Create separate dataframes for each year (e.g., "data_year_2015").
 3. Calculate the annual average rent for each dataframe.
-4. Merge the year dataframes based on "neighbourhood", and rename the columns according to year.
-5. Create column entitled "District".
-6. Populate the "District" column by finding the neighbourhood names in one of five lists of districts.
+4. Calculate the number of listings per neighbourhood.
+5. Merge the year dataframes based on "neighbourhood", and rename the columns according to year.
+6. Add district information per neighbourhood.
 7. Save the dataframe as `airbnbdataanalysis.csv`.
 
 #### Long-term rental data
@@ -263,18 +263,18 @@ In 2011 and in 2016, the housing price was highest, on average, in the Financial
 
 The skyrocketing price of owning a home in the Financial District can probably be attributed to the low supply of homes and a high demand, particularly with the tech boom in the area. On the other hand, Visitacion Valley features [more affordable housing options](http://sf-planning.org/sites/default/files/FileCenter/Documents/3635-chapter_6-5.pdf), but limited access to commercial and retail establishments. [Silver Terrace](https://zephyrre.com/communities/silver-terrace/) does not have large commercial establishments either.
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)<br>
 *Fig 1. Home Prices (USD) in San Francisco neighbourhoods in 2011* 
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Assessed%20Land%20Value%20(per%20Neigborhood)%20for%202016.svg)<br>
 *Fig 2. Home Prices (USD) in San Francisco neighbourhoods in 2016* 
 
 It is notable that long-term rental rates in the Financial District were not as different as the other neighbourhoods. Three neighbourhoods popped out having higher long-term rental rates in 2011 and in 2016 (Fig 3, 4): Presidio Heights, Sea Cliff, and St. Francis Wood. Sea Cliff and St. Francis Wood are classified as ["residence parks"](https://en.wikipedia.org/wiki/San_Francisco_Residence_Parks). [Presidio Heights](https://www.compass.com/neighborhood-guides/sf/presidio-heights/) took the top spot for rental rates; these could be attributed to its proximity to nature despite its closeness to the hustle and bustle of the City.
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202011.svg?sanitize=True)<br>
 *Fig 3. Annual Rent Prices (USD) in San Francisco in 2011*
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Yearly%20Rent%20Price%20(per%20Neigborhood)%20for%202016.svg?sanitize=True)<br>
 *Fig 4. Annual Rent Prices (USD) in San Francisco in 2016*
 
 The heatmaps (Fig 5) show the most expensive places (red) to live, providing some geographic context to Fig 1–4.
@@ -295,17 +295,17 @@ The trends in price of accommodations increased from 2011 to 2016 (Fig 6). Howev
 
 Hotel rates also went up between 2005 and 2017 (Fig 7). There was a drop in hotel rates between 2008 and 2009, but this can probably be attributed to the Recession during that time. Since 2009, however, the hotel rates grew at a rate faster then in 2005–2008. In 2015–2017, the data suggests that the increase in hotel rates is slowing down. 
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/hotel_timeseries01.svg?sanitize=True)<br>
 *Fig 7. Monthly Hotel Rates from 2005 to 2017*
 
 The slowing growth trend for both hotel and long-term rental rates *might* be an effect of the entry of peer-to-peer short-term rental options. The short-term rental rates (Fig 8) appeared to by highest in Presidio and Presidio Heights, mimicking patterns of long-term rental rates. The rates were lowest in Crocker Amazon in 2015 and 2016; but by 2017, the rates there have overtaken those of Excelsior, Treasure Island/Yerba Buena Island, and Visitacion Valley. [Crocker Amazon](https://en.wikipedia.org/wiki/Crocker-Amazon,_San_Francisco) and [Excelsior](https://en.wikipedia.org/wiki/Excelsior_District,_San_Francisco) are described as ethnically diverse residential areas, with single-family homes. [Treasure Island/Yerba Buena Island](https://sftreasureisland.org/living-treasure-island), on the other hand, feature only rental housing. In 2018, all short-term rental listings for Treasure Island have been [wiped out](https://www.sfchronicle.com/business/article/SF-short-term-rentals-transformed-as-Airbnb-12617798.php) out because the agency handling rentals does not allow vacation rentals.
 
-![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
+![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)<br>
 *Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
 
 In terms of districts, Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts.
 
-![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg2.svg?sanitize=True)
+![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg2.svg?sanitize=True)<br>
 *Fig 9. Comparison of Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Districts*
 
 At this point, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices (i.e., there are only three data points for short-term rental).
