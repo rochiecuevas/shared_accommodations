@@ -59,7 +59,7 @@ The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.c
 To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year. Monthly rates and yearly rates were then saved into different csv files.
 
 #### Peer-to-peer short-term rental data
-Analysis was conducted using the `AirbnbRateAnalysis.ipynb`(https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateAnalysis.ipynb) jupyter notebook. The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
+Analysis was conducted using the [`AirbnbRateAnalysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/AirbnbRateAnalysis.ipynb) jupyter notebook. The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
 
 ```python
 # Remove the Unnamed:0 column
@@ -96,7 +96,7 @@ Two csv files were merged ([`combine_updated.csv`](https://github.com/rochiecuev
 </details>
 
 ### Data visualisation
-Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/Airbnb%20Analysis/AirbnbRateVisualisation.ipynb).
+Matplotlib.pyplot and seaborn modules were used to plot the data into graphs. Graphs were generated for merged [home and long-term rental data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Rent%20and%20Housing%20Visualization), [hotel trends](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_visualisation.ipynb), and [peer-to-peer short-term rental](https://github.com/rochiecuevas/shared_accommodations/blob/master/AirbnbRateVisualisation.ipynb).
 
 <details><summary>More info</summary>
 <p>
@@ -211,7 +211,7 @@ time_series02.set_ylabel("Quarterly Means (USD)")
 plt.savefig("Images/hotel_timeseries02.svg")
 ```
 
-Visualisation of __peer-to-peer short-term rental rates__ involved loading the `airbnbdataanalysis.csv` into a dataframe and using the pandas.DataFrame.plot function to generate a plot containing subplots for each year.
+Visualisation of __peer-to-peer short-term rental rates__ involved loading the [`airbnbdataanalysis.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/airbnbdataanalysis.csv) into a dataframe and using the pandas.DataFrame.plot function to generate a plot containing subplots for each year.
 
 ```python
 # Plot data for 2015–2017 in subplots
