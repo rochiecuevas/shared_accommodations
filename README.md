@@ -6,7 +6,7 @@ This study aims to determine the impact of peer-to-peer short term rental to the
 
 ## Method
 ### Data sources
-Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, house rental rates (long-term), and peer-to-peer home rental rates were obtained from the sites shown in Table 1.
+Information about the housing options in San Francisco are available online. For this study, raw data on home prices (based on assessed property value), hotel rates, long-term rental rates, and peer-to-peer short-term rental rates were obtained from the sites shown in Table 1.
 
 <details><summary>More info</summary>
 <p>
@@ -300,10 +300,15 @@ Hotel rates also went up between 2005 and 2017 (Fig 7). There was a drop in hote
 
 The slowing growth trend for both hotel and long-term rental rates *might* be an effect of the entry of peer-to-peer short-term rental options. The short-term rental rates (Fig 8) appeared to by highest in Presidio and Presidio Heights, mimicking patterns of long-term rental rates. The rates were lowest in Crocker Amazon in 2015 and 2016; but by 2017, the rates there have overtaken those of Excelsior, Treasure Island/Yerba Buena Island, and Visitacion Valley. [Crocker Amazon](https://en.wikipedia.org/wiki/Crocker-Amazon,_San_Francisco) and [Excelsior](https://en.wikipedia.org/wiki/Excelsior_District,_San_Francisco) are described as ethnically diverse residential areas, with single-family homes. [Treasure Island/Yerba Buena Island](https://sftreasureisland.org/living-treasure-island), on the other hand, feature only rental housing. In 2018, all short-term rental listings for Treasure Island have been [wiped out](https://www.sfchronicle.com/business/article/SF-short-term-rentals-transformed-as-Airbnb-12617798.php) out because the agency handling rentals does not allow vacation rentals.
 
-At this point, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices (i.e., there are only three data points for short-term rental).
-
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg.svg?sanitize=True)
 *Fig 8. Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Neighbourhoods*
+
+In terms of districts, Western Addition and Outside Lands experienced a continuous increase in short-term rental rates. In contrast, there was a price decrease from 2016 to 2017 in Downtown, in North of Downtown, and in Southern districts.
+
+![Alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_annual_avg2.svg?sanitize=True)
+*Fig 9. Comparison of Peer-to-Peer Short-Term Rental Rates (USD) in San Francisco Districts*
+
+At this point, it is premature to conduct direct comparisons across years between short-term rental rates and long-term rents or home prices (i.e., there are only three data points for short-term rental).
 
 </p>
 </details>
