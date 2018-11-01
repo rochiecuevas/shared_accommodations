@@ -1,38 +1,38 @@
-neighbourhood,Ave rate 2015,No. listings 2015,Ave rate 2016,No. listings 2016,Ave rate 2017,No. listings 2017,District
-Bayview,46374.21,84,58118.04,126,45354.45,117,Southern
-Bernal Heights,68704.42,156,77447.15,191,72724.98,222,Southern
-Castro/Upper Market,84268.13,191,97370.54,246,90733.81,231,Southern
-Chinatown,91821.37,78,108057.51,123,99129.42,129,Downtown
-Crocker Amazon,47207.84,46,43735.51,51,35399.72,52,Southern
-Diamond Heights,68284.92,27,74357.28,36,71024.86,34,Southern
-Downtown/Civic Center,72078.61,140,83886.67,213,76940.31,230,Downtown
-Excelsior,43652.29,88,61899.64,130,50886.61,124,Southern
-Financial District,92887.65,108,110015.63,165,112270.6,155,Downtown
-Glen Park,82005.49,70,88719.84,100,80460.32,92,Southern
-Golden Gate Park,64965.9,38,73459.1,39,80974.7,45,Outside Lands
-Haight Ashbury,90304.8,177,94135.98,211,87583.34,207,Western Addition
-Inner Richmond,69594.5,118,88809.19,173,82335.97,200,Outside Lands
-Inner Sunset,74135.12,103,100141.14,145,88567.05,143,Outside Lands
-Lakeshore,46948.12,53,46966.61,88,51024.29,74,Outside Lands
-Marina,101661.68,167,122026.59,207,117542.63,212,North Downtown
-Mission,72660.58,262,81379.46,324,77742.92,317,Southern
-Nob Hill,82098.4,152,90394.61,179,93298.94,174,Downtown
-Noe Valley,89350.5,159,99387.38,194,94681.92,209,Southern
-North Beach,82945.11,124,100074.55,154,100401.66,167,Downtown
-Ocean View,45585.14,76,51586.67,105,53409.62,112,Outside Lands
-Outer Mission,57498.28,100,67217.64,129,64530.47,151,Southern
-Outer Richmond,59688.79,110,75338.59,138,74686.38,155,Outside Lands
-Outer Sunset,61484.61,122,61144.05,161,57417.92,169,Outside Lands
-Pacific Heights,112492.45,138,131439.06,188,119946.37,193,North Downtown
-Parkside,56481.23,80,61925.08,125,80967.16,112,Outside Lands
-Potrero Hill,79808.98,144,109061.58,188,109022.58,190,Southern
-Presidio,122404.52,16,173620.23,22,180809.47,13,North Downtown
-Presidio Heights,96140.52,56,199893.69,69,186860.93,71,North Downtown
-Russian Hill,97908.72,125,131082.06,202,126076.69,194,North Downtown
-Seacliff,90754.15,26,99225.46,36,146973.33,54,Outside Lands
-South of Market,99723.07,216,120694.4,333,118016.84,320,Downtown
-Treasure Island/YBI,44054.39,19,47715.75,26,38611.79,28,North Downtown
-Twin Peaks,70914.47,81,85303.3,110,80264.48,120,Southern
-Visitacion Valley,43419.13,39,54705.92,70,48519.79,68,Southern
-West of Twin Peaks,84291.93,92,92828.69,136,82899.2,145,Southern
-Western Addition,75755.78,212,96225.83,299,105159.4,273,Western Addition
+neighbourhood,Listings_2015,Listings_2016,Listings_2017,STR_2015,STR_2016,STR_2017,District
+Bayview,84,126,117,46374.21,58118.04,45354.45,Southern
+Bernal Heights,156,191,222,68704.42,77447.15,72724.98,Southern
+Castro/Upper Market,191,246,231,84268.13,97370.54,90733.81,Southern
+Chinatown,78,123,129,91821.37,108057.51,99129.42,Downtown
+Crocker Amazon,46,51,52,47207.84,43735.51,35399.72,Southern
+Diamond Heights,27,36,34,68284.92,74357.28,71024.86,Southern
+Downtown/Civic Center,140,213,230,72078.61,83886.67,76940.31,Downtown
+Excelsior,88,130,124,43652.29,61899.64,50886.61,Southern
+Financial District,108,165,155,92887.65,110015.63,112270.6,Downtown
+Glen Park,70,100,92,82005.49,88719.84,80460.32,Southern
+Golden Gate Park,38,39,45,64965.9,73459.1,80974.7,Outside Lands
+Haight Ashbury,177,211,207,90304.8,94135.98,87583.34,Western Addition
+Inner Richmond,118,173,200,69594.5,88809.19,82335.97,Outside Lands
+Inner Sunset,103,145,143,74135.12,100141.14,88567.05,Outside Lands
+Lakeshore,53,88,74,46948.12,46966.61,51024.29,Outside Lands
+Marina,167,207,212,101661.68,122026.59,117542.63,North Downtown
+Mission,262,324,317,72660.58,81379.46,77742.92,Southern
+Nob Hill,152,179,174,82098.4,90394.61,93298.94,Downtown
+Noe Valley,159,194,209,89350.5,99387.38,94681.92,Southern
+North Beach,124,154,167,82945.11,100074.55,100401.66,Downtown
+Ocean View,76,105,112,45585.14,51586.67,53409.62,Outside Lands
+Outer Mission,100,129,151,57498.28,67217.64,64530.47,Southern
+Outer Richmond,110,138,155,59688.79,75338.59,74686.38,Outside Lands
+Outer Sunset,122,161,169,61484.61,61144.05,57417.92,Outside Lands
+Pacific Heights,138,188,193,112492.45,131439.06,119946.37,North Downtown
+Parkside,80,125,112,56481.23,61925.08,80967.16,Outside Lands
+Potrero Hill,144,188,190,79808.98,109061.58,109022.58,Southern
+Presidio,16,22,13,122404.52,173620.23,180809.47,North Downtown
+Presidio Heights,56,69,71,96140.52,199893.69,186860.93,North Downtown
+Russian Hill,125,202,194,97908.72,131082.06,126076.69,North Downtown
+Seacliff,26,36,54,90754.15,99225.46,146973.33,Outside Lands
+South of Market,216,333,320,99723.07,120694.4,118016.84,Downtown
+Treasure Island/YBI,19,26,28,44054.39,47715.75,38611.79,North Downtown
+Twin Peaks,81,110,120,70914.47,85303.3,80264.48,Southern
+Visitacion Valley,39,70,68,43419.13,54705.92,48519.79,Southern
+West of Twin Peaks,92,136,145,84291.93,92828.69,82899.2,Southern
+Western Addition,212,299,273,75755.78,96225.83,105159.4,Western Addition
