@@ -350,7 +350,7 @@ Zooming into the neighbourhood level (Fig 10), it is clear that Mission, South o
 ![alt text](https://github.com/rochiecuevas/shared_accommodations/blob/master/Images/Airbnb_neighbourhood_listings.svg?sanitize=True)<br>
 *Fig 10. Comparison of the Number of Peer-to-Peer Short-Term Rental Listings in San Francisco Neighbourhoods*
 
-Heatmaps (Fig 11) show the progression in the number of short-term rental listings and rates. It is interesting to note that there were two regions of particularly high rates for short-term rental properties; however, the rates spiked for most neighbourhoods in the next two years. In 2015, there was only one hotspot for short-term rental listings, but these quickly spread in the subsequent years.
+Heatmaps (Fig 11) show the progression in the number of short-term rental listings and rates. It is interesting to note that there were two regions of particularly high rates for short-term rental properties(northern part of the City and near Twin Peaks); however, the rates spiked for most neighbourhoods in the next two years. The rates rose faster around the Downtown and North of Downtown areas than around Twin Peaks. On the other hand, there was only one hotspot for short-term rental listings in 2015. It was concentrated around the central part of the City; however, the listings quickly spread in the subsequent years, with a second concentration growing around the Downtown and South of Market areas.
 
 |year|short-term rental rates|number of short-term listings|
 |---|---|---|
