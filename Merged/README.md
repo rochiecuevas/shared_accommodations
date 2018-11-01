@@ -1,83 +1,92 @@
-## Data Collection
-
-The data sets `combine_updated.csv` and  `yearly_rent.csv` were previously obtained and cleaned.
-
 ## Getting Started
 
-Two Python (version 3.6) modules were used to prepare the data for further analyses and visualisation:
-- [Pandas](https://pandas.pydata.org/): to create data structures that could be processed and manipulated in Python
-- [NumPy](http://www.numpy.org/): to create an array
-- [CSV](https://docs.python.org/3/library/csv.html): to read csv files
-
+The data sets [`home_prices.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/home_prices.csv) and  [`yearly_rent.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/yearly_rent.csv) are merged into one dataframe using the Python (version 3.6) module [Pandas](https://pandas.pydata.org/). Merging the data allows for direct comparison of trends between home prices and long-term rental rates.
 
 ```python
 # Import Dependencies
 import pandas as pd
-import numpy as np
-import csv
 ```
 
 ## Data processing
 
-The path to data set was created to obtain them from github repository.  In order to read files cvs module  `pd.read_csv` was used.
+The paths to the two .csv files were called to access.  The .csv files were then loaded to separate dataframes.
 
 ```python
 # Create a path to the csv and read it into a Pandas DataFrame
-csv_path = "../Home Prices/combine_updated.csv"
+csv_path = "../Data/home_prices.csv"
 rent_path = "../Data/yearly_rent.csv"
 home_df = pd.read_csv(csv_path, encoding='utf8', engine='python')
 rent_df = pd.read_csv(rent_path, encoding='utf8', engine='python')
 ```
-In order to merge DataFrames together, the format of DataFrame  `rent_df`   was modified. New DataFrame  `melted_df`  was created and corresponds the format of  DataFrame  `home_df`.
+Because the rental rates of each year are presented in separate columns in `rent_df`, it is [melted](https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.melt.html) from wide form to long form, resulting in a new dataframe designated as `melted_df`. The format of this dataframe now matches that of `home_df`.
 
 ```python
-#Changing from columns to rows
-my_col_names = list(rent_df.columns.values)[2:9]
+# Changing from columns to rows
 melted_df = pd.melt(rent_df,id_vars=["Neighborhood"],
-value_vars=my_col_names, var_name="Year",value_name="Yearly Rent Price")
+                    value_vars=[i for i in list(rent_df.columns.values[1:8])],
+                    var_name = "Year", value_name = "Annual Rent")
+
+# Parse "Year" values to reflect year
+melted_df["Year"] = melted_df["Year"].str.replace("Rent_", "")
+melted_df["Year"] = melted_df["Year"].astype(int)
 ```
 
-New DataFrame `rent_df2` was created by merging  DataFrames `rent_df` and  `melted_df`  in order to include missing columns.
+`rent_df2` is created by merging `rent_df` and  `melted_df` so that geographic coordinates are included.
 
 ```python
 #merging two data frames
 rent_df2 = pd.merge(melted_df,rent_df.loc[:,["Neighborhood","City","Lat","Lng"]])
 ```
 
-Columns were renamed to correspond with each other and unnecessary for further analysis columns were dropped.
+Column names in `home_df` are renamed to match the column names in `rent_df2`.
 
 ```python
 #rename columns to merge on same names
-#changing the type of column
 home_df = home_df.rename(columns={'Assessor Neighborhood': 'Neighborhood', 
-'Closed Roll Year': 'Year'})
-rent_df2["Year"] = rent_df2["Year"].astype(int)
-
-home_df = home_df.drop(['Unnamed: 0'], axis=1)
+                                  'Assessed Land Value': 'Home Price',
+                                  'Closed Roll Year': 'Year'})
 ```
 
-New DataFrame `merged_csv` was created by merging DataFrames `rent_df2` and  `home_df`  based on columns  `Neighborhood` and  `Year`.
+Also, the spelling and name variants in `home_df` are made uniform with those in `rent_df2`. In instances where the names led to two entries with the same name (e.g., "Financial District North" and "Financial District South" converted to "Financial District") are grouped and the average of their home prices are calculated.
 
 ```python
-#merging
-merged_csv = pd.merge(home_df,rent_df2, 
-how='inner',
-left_on=["Neighborhood","Year"],
-right_on=["Neighborhood","Year"])
+#rename home prices neighbourhoods for consistency with rent neighbourhoods
+home_df["Neighborhood"] = home_df["Neighborhood"].replace({"Buena Vista Park": "Buena Vista",
+                                                             "Bayview Heights": "Bayview",
+                                                             "Croker Amazon": "Crocker Amazon",
+                                                             "Forest Hill Extension": "Forest Hill",
+                                                             "Lake --The Presidio": "Lake", 
+                                                             "Lake Shore": "Lakeshore", 
+                                                             "Jordan Park/Laurel Heights": "Laurel Heights",
+                                                             "Mission Dolores": "Mission", 
+                                                             "Sea Cliff": "Seacliff",
+                                                             "Financial District North": "Financial District",
+                                                             "Financial District South": "Financial District"})
+# Group by the same neighbourhood name and use the means
+home_gb = home_df.groupby("Neighborhood").mean()
+home_gb = home_gb.reset_index()
+home_gb["Year"] = home_gb["Year"].astype(int)
 ```
 
-DataFrame `merged_csv` was grouped  on `Neighborhood` in order to count  mean values for  `Yearly Rent Price` and  `Assessed Land Value` for each Neighborhood. Column `Year` was dropped due to unnecessity.
+A new dataframe, `merged_csv`, is created by merging `rent_df2` and `home_df` based on columns `Neighborhood` and `Year`.
+
+```python
+#merge home price and rent dataframes
+merged_df = pd.merge(home_gb,rent_df2, on = ["Neighborhood", "Year"])
+```
+
+DataFrame `merged_csv` is grouped  on `Neighborhood` in order to count  mean values for `Annual Rent` and `Home Price` for each neighbourhood. Column `Year` is dropped.
 
 ```python
 #Grouping DataFrame based on "Neighborhood"
-merged_gb = merged_csv.groupby("Neighborhood").mean()
+merged_gb = merged_df.groupby("Neighborhood").mean()
 
 #Dropping column
 merged_gb = merged_gb.drop(['Year'], axis=1)
+merged_gb = merged_gb.reset_index()
 ```
 
 
 ## Output 
 
-DataFrames were saved as  `hp_and_rent.csv`  and  `hp_and_rent_grouped.csv`  in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
-
+`merged_df` is saved as [`hp_and_rent.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hp_and_rent.csv) and `merged_gb` as [`hp_and_rent_grouped.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hp_and_rent_grouped.csv) in the [Data](https://github.com/rochiecuevas/shared_accommodations/tree/master/Data) folder.
