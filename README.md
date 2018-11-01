@@ -245,25 +245,30 @@ time_series02.set_ylabel("Quarterly Means (USD)")
 plt.savefig("Images/hotel_timeseries02.svg")
 ```
 
-Visualisation of __peer-to-peer short-term rental rates__ involved loading the [`airbnbdataanalysis.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/airbnbdataanalysis.csv) into a dataframe and using the pandas.DataFrame.plot function to generate a plot containing subplots for each year.
+Visualisation of __peer-to-peer short-term rental rates__ involved loading the [`airbnbdataanalysis.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/airbnbdataanalysis.csv) into a dataframe. Then, a user-defined function, `bargraphs`, was built to generate bargraphs with subplots corresponding to each year. 
 
 ```python
-# Plot data for 2015–2017 in subplots
-ax = df.plot.bar(x = "neighbourhood", subplots = True,
+def bargraphs(df, str): 
+    ax = df.plot.bar(x = "neighbourhood", 
+                 y = [i for i in df.filter(regex = str)], # select column headers with substring
+                 subplots = True,
                  figsize = (8,15), title = ["", "", ""])
-ax[0].set_ylabel("Average Annual Rate (USD)")
-ax[1].set_ylabel("Average Annual Rate (USD)")
-ax[2].set_ylabel("Average Annual Rate (USD)")
+    return ax
+```
 
-ax[0].set_ylim(0, 220000)
-ax[1].set_ylim(0, 220000)
-ax[2].set_ylim(0, 220000)
+This function was used to produce bargraphs of short-term rental rates and of number of listings.
 
+```python
+bar_STR = bargraphs(df,"STR")
+bar_Listings = bargraphs(df,"Listings")
+```
 
-# Save file as svg
-plt.tight_layout()
-plt.savefig("../Images/Airbnb_annual_avg.svg")
-plt.savefig("../Images/Airbnb_annual_avg.png")
+Each bargraph had three subplots. To add y-axis labels for each subplot, a for-loop was used. The code below was for the short-term rental rates bargraph.
+
+```python
+for yr in range(0, len(bar_STR)): # loop through all subplots in ax (there are three, corresponding to the years)
+    bar_STR[yr].set_ylabel("Average Annual Rate (USD)")
+    bar_STR[yr].set_ylim(0, 220000)
 ```
 
 Since district infomation was available, it was possible to group the data by district and get the mean rates.
@@ -273,17 +278,80 @@ Since district infomation was available, it was possible to group the data by di
 df2 = round(df.groupby("District").mean(),2)
 ```
 
-The average rates for each year were be plotted in a bar chart by district, and then saved.
+The average rates for each year were be plotted in a bar chart by district using a user-defined function called `bargraphs2`.
 
 ```python
-# Plot annual average rate of Airbnb
-ax2 = df2.plot.bar(figsize = (8, 8))
-ax2.set_ylabel("Average Annual Rate (USD)")
+def bargraphs2(df, str):
+    ax2 = df.plot.bar(y = [i for i in df.filter(regex = str)], figsize = (8, 8))
+    return ax2
 
-# Save file as svg
-plt.tight_layout()
-plt.savefig("../Images/Airbnb_annual_avg2.svg")
-plt.savefig("../Images/Airbnb_annual_avg2.png")
+bargr_STR = bargraphs2(df2, "STR")
+bargr_Listings = bargraphs2(df2, "Listings")
+```
+
+To find the geographic context of the trends, heatmaps were generated for each year in which short-term rental rates and number of listings were the weights. The modules required were requests and json. The Google Maps API key (gkey) was stored in a config file which was not pushed into the repository for security purposes.
+
+```python
+# Dependencies
+import requests
+import json
+from config import gkey
+```
+
+Columns corresponding to city, latitude, and longitude of each neighbourhood were added to the dataframe `df`.
+
+```python
+# Add columns for geolocations per neighbourhood
+df["City"] = "San Francisco"
+df["Lat"] = ""
+df["Long"] = ""
+
+```
+
+The geographical coordinates of the neighbourhoods were obtained using Google Maps Geocoding API.
+
+```python
+# Add coordinates per neighbourhood
+for index, row in df.iterrows():
+    city = row["City"]
+    neighborhood = row["neighbourhood"]
+    
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={neighborhood}&{city}&key={gkey}"
+    response_json = requests.get(url).json()
+
+
+    #pprint(response_json)    
+    
+    df.loc[index,"Lat"] = response_json["results"][0]["geometry"]["location"]["lat"]
+    df.loc[index,"Long"] = response_json["results"][0]["geometry"]["location"]["lng"]
+```
+
+Heatmaps were then generated using the folium module. The folium.Map location had coordinates for San Francisco (lat = 37.7747, lng = -122.419). In each heatmap, the maximum values for the weights were based on the 2017 data. As the weights increased, the colour turned redder on the map.
+
+```python
+#Dependencies
+import folium
+from folium.plugins import HeatMap
+
+max_amount= float(df["Listings_2017"].max())
+
+hmap_2015 = folium.Map(location=[37.7749, -122.419], zoom_start= 11, )
+
+hm_wide_2015 = HeatMap( list(zip(df["Lat"], df["Long"], df["Listings_2015"])),
+                   min_opacity=0.2,
+                   max_val=max_amount,
+                   radius=25, blur=27, 
+                   max_zoom=1, 
+                 )
+
+hmap_2015.add_child(hm_wide_2015)
+```
+
+The resulting heatmaps were saved as .html files in the [Images](https://github.com/rochiecuevas/shared_accommodations/tree/master/Images) folder.
+
+```python
+# Save file
+hmap_2015.save(os.path.join('Images', 'heatmap_listings_2015.html'))
 ```
 
 </p>
