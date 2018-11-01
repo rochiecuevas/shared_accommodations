@@ -51,7 +51,7 @@ Pandas and NumPy were used, unless otherwise stated.
 <p>
     
 #### Hotel data
-The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_dailyrates.csv). To find more insights from the data, it was important to convert the daily rate to monthly rate. Calculations were made more realistic by using hotel occupancy rates as a factor in correcting the monthly rates; without this correction factor, it is assumed that hotels are consistently 100% occupied. The code in `hotel_rate_analysis.ipynb` was used the calculations following these general steps:
+The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hotel_dailyrates.csv). To find more insights from the data, it was important to convert the daily rate to monthly rate. Calculations were made more realistic by using hotel occupancy rates as a factor in correcting the monthly rates; without this correction factor, it is assumed that hotels are consistently 100% occupied. The code in [`hotel_rate_analysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/hotel_rate_analysis.ipynb) was used the calculations following these general steps:
 1. Classify the months based on number of days.
 2. Calculate the monthly rates by multiplying the "average daily rate" with the number of days (__Note:__ For February, further classify the entries to those in regular or in leap years).
 3. Correct the monthly rates by multiplying these with the "hotel occupancy" rate.
@@ -59,24 +59,58 @@ The processed hotel data was stored in [`hotel_dailyrates.csv`](https://github.c
 To determine if there were trends across years, the yearly rates were calcuated by summing up the corrected monthly rates per year. Monthly rates and yearly rates were then saved into different csv files.
 
 #### Peer-to-peer short-term rental data
-Analysis was conducted using the [`AirbnbRateAnalysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/AirbnbRateAnalysis.ipynb) jupyter notebook. The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. An extra data cleaning step was conducted prior to data analysis because the output file was saved with index not set to "False" (an extra column called "Unnamed:0" was added to the dataframe). This column was removed. And the dataframe was renamed.
-
-```python
-# Remove the Unnamed:0 column
-airbnb_rate = airbnb_df.drop(['Unnamed: 0'], axis=1)
-
-# Rename the dataframe 
-data = airbnb_rate
-```
+Analysis was conducted using the [`AirbnbRateAnalysis.ipynb`](https://github.com/rochiecuevas/shared_accommodations/blob/master/AirbnbRateAnalysis.ipynb) jupyter notebook. The output file [`Airbnb_listings.csv`](https://github.com/rochiecuevas/shared_accommodations/tree/master/Airbnb%20Listings%20Data%20) was loaded as a dataframe. 
 
 The steps followed for data analysis followed were: 
 1. Extract the year substring from the values in the "date" column.
-2. Create separate dataframes for each year (e.g., "data_year_2015").
-3. Calculate the annual average rent for each dataframe.
-4. Calculate the number of listings per neighbourhood.
-5. Merge the year dataframes based on "neighbourhood", and rename the columns according to year.
-6. Add district information per neighbourhood.
-7. Save the dataframe as `airbnbdataanalysis.csv`.
+
+```python
+data['date'] = [e[:4] for e in data['date']]
+```
+
+2. Create a dataframe containing the number of listings per neighbourhood per year. Tabulate the number of listings according to year.
+
+```python
+# Get the number of listings per year and per neighbourhood
+data1 = data.groupby(["date", "neighbourhood"])["daily rate"].nunique()
+data1 = data1.reset_index()
+data1 = data1.rename(columns = {"daily rate": "No. of listings",
+                                "date": "year"})
+
+# Use years as headers
+data1 = data1.pivot(index = "neighbourhood", columns = "year")
+data1.columns = data1.columns.droplevel(0)
+data1 = data1.rename(columns = {"2015": "Listings_2015", 
+                                "2016": "Listings_2016", 
+                                "2017": "Listings_2017"})
+data1 = data1.reset_index()
+```
+
+3. Calculate the annual average rent per neighbourhood per year. Tabulate the rental rates (STR) according to year.
+
+```python
+# Calculate mean annual rental rates based on years and neighbourhoods
+data2 = round(data.groupby(["date", "neighbourhood"]).mean(), 2)
+data2 = data2.reset_index()
+data2 = data2.rename(columns = {"date": "year"})
+
+# Use years as headers
+data2 = data2.pivot(index = "neighbourhood", columns = "year")
+data2.columns = data2.columns.droplevel(0)
+data2 = data2.rename(columns = {"2015": "STR_2015", 
+                                "2016": "STR_2016", 
+                                "2017": "STR_2017"})
+data2 = data2.reset_index()
+```
+
+4. Merge the year dataframes based on "neighbourhood".
+
+```python
+Airbnb_avg = pd.merge(data1, data2, on = "neighbourhood")
+```
+
+6. Add district information per neighbourhood based on lists of districts (containing neighbourhoods).
+7. Save the dataframe as [`airbnbdataanalysis.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/airbnbdataanalysis.csv).
 
 #### Long-term rental data
 Data from [`rent_raw.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Rent%20Data/Rent_Analysis.ipynb) was loaded as the `rent_df` dataframe. Calculating the yearly rate for each neighbourhood was done as follows:
@@ -86,7 +120,7 @@ Data from [`rent_raw.csv`](https://github.com/rochiecuevas/shared_accommodations
 4. Create the dataframe "year_rent_df" in which year and neighbourhoods are the column headers.
 5. Calculate the mean of long-term rental for each year-neighbourhood pair.
 6. Add geolocation data extracted from Google Maps Geocoding API.
-7. Save the dataframe as a csv file, `yearly_rent.csv`.
+7. Save the dataframe as a csv file, [`yearly_rent.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/yearly_rent.csv).
 .
 
 #### Merged home price and rental data
