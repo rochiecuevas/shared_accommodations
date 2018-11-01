@@ -77,7 +77,7 @@ The dataframe to be generated needs to have "Neighborhood" and the years (2011â€
 ```python
 # Create a list of keys by adding "20" to the last two digits of the year
 keys = year_list_str
-keys = ["20" + key for key in keys]
+keys = ["Rent_20" + key for key in keys]
 
 # Insert Neighbourhood as a key
 keys.insert(0,"Neighborhood")
@@ -102,14 +102,12 @@ year_rent_df = pd.DataFrame(dict(zip(keys, values)))
 
 ```python
 #Calculating Avg Rent Price Per Year 
-#and adding column 'City' to specify the location of neighborhood
+#and adding column 'City' to specify the location of neighborhood (San Francisco)
 
-year_rent_df["Avg Price Per Year"] = ""
-year_rent_df["City"] = ""
-for row in year_rent_df["Neighborhood"]:
-year_rent_df["Avg Price Per Year"]=year_rent_df.mean(axis=1)
 year_rent_df["City"] = "San Francisco"
-year_rent_df.head()
+
+for row in year_rent_df["Neighborhood"]:
+    year_rent_df["Avg Rent"] = round(year_rent_df.mean(axis = 1), 2)
 ```
 
 ## Adding geolocations for each SF district
