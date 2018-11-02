@@ -2,14 +2,12 @@
 
 
 ## Getting Started
-Python (version 3.6) modules are used in preparing the data for further analyses and visualisation:
+The following Python (version 3.6) modules are used in preparing the data for further analyses and visualisation:
 - [Pandas](https://pandas.pydata.org/): organise the data into structures that can be manipulated
 - [CSV](https://docs.python.org/3/library/csv.html/): read csv files
 - [Matplotlib](https://matplotlib.org/): Python 2D plotting library 
 - [Seaborn](https://seaborn.pydata.org/): data visualization library based on matplotlib
 - [Gmaps](https://jupyter-gmaps.readthedocs.io/en/latest/): Google Maps library
-
-
 
 ```python
 #Dependencies
@@ -22,7 +20,7 @@ import gmaps.datasets
 ```
 
 ## Data visualization
-The data from the `hp_and_rent.csv.csv` file is loaded into a dataframe.
+The data from the [`hp_and_rent.csv`](https://github.com/rochiecuevas/shared_accommodations/blob/master/Data/hp_and_rent.csv) file is loaded into a dataframe.
 
 ```python
 #Importing csv file 
@@ -31,86 +29,45 @@ yearly_price_change = pd.read_csv(yearly_price_change_path, encoding='utf8', eng
 yearly_price_change.head()
 ```
 
-Data for years 2011 and 2016 was extracted from original DataFrame  `yearly_price_change` in order to build charts.
+Data for years 2011 and 2016 are selected from the dataFrame `yearly_price_change` in order to build charts that represent the first year of available data and the last year.
+
+Bar graphs showing Annual Rent and Home Price per neighbourhood are plotted for 2011 and saved in the [Images](https://github.com/rochiecuevas/shared_accommodations/tree/master/Images) folder. Thess code are modified to create bar graphs for 2016. 
 
 ```python
-rent_year2011 = yearly_price_change.loc[yearly_price_change['Year'].isin(['2011'])]
-rent_year2016 = yearly_price_change.loc[yearly_price_change['Year'].isin(['2016'])]
-```
-
-Chart `Assessed Land Value (per Neigborhood) for 2011` is showing Assessed Land Value per each Neighborhood in 2011. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
-
-
-```python
-# Draw a nested barplot to show survival for class and sex
-plot2 = plt.subplots(figsize=(30, 10))
-sns.barplot(x="Neighborhood", y="Assessed Land Value", data=rent_year2011, palette="rocket")
-plt.title("Assessed Land Value (per Neigborhood) for 2011 ", fontsize=30)
+# Create a bargraph for home prices in 2011
+plot2 = plt.subplots(figsize=(16, 8))
+sns.barplot(x = "Neighborhood", y = "Home Price", 
+            data=yearly_price_change.loc[yearly_price_change["Year"] == 2011], 
+            palette="rocket")
+plt.title("Home Prices (USD) for 2011")
 plt.xticks(rotation=90)
-plt.savefig("../Images/Assessed Land Value (per Neigborhood) for 2011.svg")
-plt.show()   
-```
-Chart `Assessed Land Value (per Neigborhood) for 2016` is showing Assessed Land Value per each Neighborhood in 2016. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
+plt.ylabel("Home Price (USD)")
+plt.xlabel ("Neighbourhood")  
+plt.tight_layout()
 
-```python
-# Draw a nested barplot to show survival for class and sex
-plot2 = plt.subplots(figsize=(30, 10))
-sns.barplot(x="Neighborhood", y="Assessed Land Value", data=rent_year2016, palette="Wistia_r")
-plt.title("Assessed Land Value (per Neigborhood) for 2016 ", fontsize=30)
+# Create a bargraph for rental rates in 2011
+plot2 = plt.subplots(figsize=(16, 8))
+sns.barplot(x = "Neighborhood", y = "Annual Rent", 
+            data= yearly_price_change.loc[yearly_price_change["Year"] == 2011], 
+            palette = "rocket")
+plt.title("Long-Term Rental Rates (USD) for 2011")
 plt.xticks(rotation=90)
-plt.savefig("../Images/Assessed Land Value (per Neigborhood) for 2016.svg")
-plt.show()    
+plt.ylabel("Long-Term Rental Rate (USD)")
+plt.xlabel ("Neighbourhood")
+plt.tight_layout()
 ```
 
-Chart `Yearly Rent Price (per Neigborhood) for 2011` is showing Yearly Rent Price per each Neighborhood in 2011. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
+A pointplot (seaborn module) is generated to illustrate how annual rent rates change over the years. The graphs are saved in the [Images](https://github.com/rochiecuevas/shared_accommodations/tree/master/Images) folder. Using a similar code, it is possible to generate another pointplot for home prices.
 
 ```python
-# Draw a nested barplot to show survival for class and sex
-plot2 = plt.subplots(figsize=(30, 10))
-sns.barplot(x="Neighborhood", y="Yearly Rent Price", data=rent_year2011, palette="rocket")
-plt.title("Yearly Rent Price (per Neigborhood) for 2011 ", fontsize=30)
-plt.xticks(rotation=90)
-plt.savefig("../Images/Yearly Rent Price (per Neigborhood) for 2011.svg")
-plt.show()     
-```
-
-Chart `Yearly Rent Price (per Neigborhood) for 2016` is showing Yearly Rent Price per each Neighborhood in 2016. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
-
-```python
-# Draw a nested barplot to show survival for class and sex
-plot2 = plt.subplots(figsize=(30, 10))
-sns.barplot(x="Neighborhood", y="Yearly Rent Price", data=rent_year2016, palette="Wistia_r")
-plt.title("Yearly Rent Price (per Neigborhood) for 2016 ", fontsize=30)
-plt.xticks(rotation=90)
-plt.savefig("../Images/Yearly Rent Price (per Neigborhood) for 2016.svg")
-plt.show()    
-```
-
-Chart  `"Yearly Rent Price Change"` is showing Yearly Rent Price change from 2011 to 2016. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
-
-```python
-
-#Creating a graph that will show yearly change in  rent price 
+# Creating a graph that will show yearly change in rent price 
 fig, ax = plt.subplots(figsize=(7, 7))
-ax.set(yscale="log")
-sns.lineplot(x = yearly_price_change["Year"], y = yearly_price_change["Yearly Rent Price"], 
-marker ='D', linewidth=2, color = "purple")  
+
+ax = sns.pointplot(x = "Year", y = "Annual Rent", data = yearly_price_change,
+                   marker = 'D', linewidth = 2, color = "purple")
+ 
 plt.title("Yearly Rent Price Change", fontsize=15)
-plt.savefig("../Images/Yearly Rent Price Change.svg")
-plt.show()  
-```
-Chart  `"Yearly Land Value Change"` is showing Land Value change from 2011 to 2016. Image was saved to folder  [Images](.https://github.com/rochiecuevas/shared_accommodations/tree/master/Images)
-
-```python
-
-#Creating a graph that will show yearly change in Land Value
-fig, ax = plt.subplots(figsize=(7, 7))
-ax.set(yscale="log")
-sns.lineplot(x = yearly_price_change["Year"], y = yearly_price_change["Assessed Land Value"], 
-marker ='D', linewidth=2, color = "Gold")
-plt.title("Yearly Land Value Change", fontsize=15)
-plt.savefig("../Images/Yearly Land Value Change.svg")
-plt.show()  
+plt.ylabel("Annual Rent (USD)") 
 ```
 
 ## HeatMaps
@@ -118,7 +75,6 @@ plt.show()
 Heat Map for Neighborhoods Rent Rates  was created to show  neighborhoods with highest rent price.
 
 ```python
-
 #Creating a HeatMap to show Neighborhoods Rent Rates  
 fig = gmaps.figure()
 fig = gmaps.figure(map_type="SATELLITE")
@@ -131,30 +87,15 @@ fig
 
 ```
 
-Heat Map for Neighborhoods Assessed Land Value  was created to show  neighborhoods with highest housing price.
+Heatmaps are also generated to provide a geographic orientation to the neighbourhoods and their costs in San Francisco. This heatmap uses home prices as weights. The code can be modified to plot annual rent rates as weights on the map of the City.
 
 ```python
-
+#Creating a HeatMap to show Neighborhoods Home Price
 fig = gmaps.figure()
 fig = gmaps.figure(map_type="SATELLITE")
 locations = yearly_price_change[["Lat", "Lng"]]
-weights = yearly_price_change["Assessed Land Value"]
+weights = yearly_price_change["Home Price"]
 heat_layer1 = gmaps.heatmap_layer(locations, weights=weights, point_radius = 25, opacity = 0.7)                                
 fig.add_layer(heat_layer1) 
 fig
-
-```
-
-Two Heat Maps were layered to each other to show most expensive neighborhoods.
-
-```python
-
-fig = gmaps.figure()
-fig = gmaps.figure(map_type="SATELLITE")
-locations = yearly_price_change[["Lat", "Lng"]]
-weights = yearly_price_change["Assessed Land Value"]
-heat_layer1 = gmaps.heatmap_layer(locations, weights=weights, point_radius = 25, opacity = 0.7)                                
-fig.add_layer(heat_layer1) 
-fig
-
 ```
